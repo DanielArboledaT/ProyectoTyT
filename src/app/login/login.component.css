@@ -10,17 +10,25 @@
     align-items: center;
 }
 
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
 .container-login{
-    height: 300px;
-    width: 30vw;
-    background: rgba(255, 255, 255, 0.5);
+    height: 500px;
+    width: 400px;
+    background: white;
     margin: 150px;
     border-radius: .25rem;
 }
 
 .container-login .container-tittle{
     text-align: center;
-    padding: 15px 0 0 0;
+    padding: 35px 0 0 0;
     color: black;
 }
 
@@ -31,10 +39,18 @@
 
 .login-form a{
     color: black;
-   
+    margin-top: 25px;
 }
 
 .login-form button{
     margin-top: 20px;
-    float: right;
+    background: linear-gradient(90deg,#000096,#96006E);
+    width: 50%;
+    color: white;
+    border-radius: 50px;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
 }

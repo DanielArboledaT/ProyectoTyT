@@ -1,0 +1,18 @@
+.nav-item a{
+    color: white;
+
+}
+
+li:hover{
+    background: #96006E;
+    transition: all .7s ease;
+}
+
+
+.margin-home{
+    margin: 20px 20px 20px 20px;
+}
+
+.card{
+    height: calc(50vh - 66px);
+}

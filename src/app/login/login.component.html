@@ -1,20 +1,40 @@
 <div class="login">
-    <div class="container-login">
-        <div class="container-tittle">
-            <h3>Iniciar sesi&oacute;n</h3>
-        </div>
-        <div class="login-form">
-            <form class="form-group">
-                <div style="margin-bottom: 10px;">
+  <div class="container-login">
+    <div class="container-tittle">
+      <img src="../../assets/img/TyT.ico" width="100" height="100" alt="">
+      <h3>Bienvenido</h3>
+    </div>
+    <div class="login-form">
+      <form class="example-form">
+        <mat-form-field class="example-full-width" style="width: 80%;">
+          <input matInput placeholder="Usuario"/>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="width: 80%;" >
+            <input type="password" matInput placeholder="contraseña"/>
+        </mat-form-field>
+        <!--<div style="margin-bottom: 10px;">
                     <label> Usuario</label>
                     <input type="text" class="form-control" placeholder="Usuario">
                     <label style="padding-top: 5px">Contraseña</label>
                     <input type="password" class="form-control" placeholder="Contraseña">
                 </div>
                 <a href="">¿Olvistate tu contraseña?</a>
-                <button type="button" class="btn btn-primary">Conectar</button>
-            </form>
-            
-        </div>
+                <button type="button" class="btn">Conectar</button>-->
+        
+      </form>
+      
+      <div class="center">
+            <button *ngIf="!cargando" type="button" class="btn" (click)="enviar()">Ingresar</button>
+            <button *ngIf="cargando" class="btn" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Ingresando...
+            </button>
+      </div>
+      <div class="center">
+            <a href="">¿Olvidaste tu contraseña?</a>
+      </div>
+      
+      
     </div>
+  </div>
 </div>
