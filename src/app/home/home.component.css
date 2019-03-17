@@ -12,7 +12,3 @@ li:hover{
 .margin-home{
     margin: 20px 20px 20px 20px;
 }
-
-.card{
-    height: calc(50vh - 66px);
-}

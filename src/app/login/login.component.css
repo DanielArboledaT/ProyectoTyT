@@ -5,6 +5,8 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
     display: flex;
     justify-content: left;
     align-items: center;

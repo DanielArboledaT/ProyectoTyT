@@ -24,7 +24,7 @@
       </form>
       
       <div class="center">
-            <button *ngIf="!cargando" type="button" class="btn" (click)="enviar()">Ingresar</button>
+            <button *ngIf="!cargando" type="button" class="btn" routerLink="/home">Ingresar</button>
             <button *ngIf="cargando" class="btn" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Ingresando...

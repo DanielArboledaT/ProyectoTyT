@@ -47,11 +47,25 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col-sm-12">
       <div class="card">
-        <div class="card-header">
-          Hola puto
-        </div>
         <div class="card-body">
-          Perro
+          <div style="width: 90vw; height: 300px;">
+              <ngx-charts-line-chart
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="multi"
+              [gradient]="gradient"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [legend]="showLegend"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel"
+              [autoScale]="autoScale">
+            </ngx-charts-line-chart>
+          </div>
+            
+
         </div>
       </div>
     </div>
