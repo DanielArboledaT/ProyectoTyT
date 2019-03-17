@@ -1,14 +1,22 @@
-.nav-item a{
-    color: white;
-
+.nav-item a {
+  color: white;
 }
 
-li:hover{
-    background: #96006E;
-    transition: all .7s ease;
+li:hover {
+  background: #96006e;
+  transition: all 0.7s ease;
 }
 
+.margin-home {
+  margin: 20px 20px 20px 20px;
+}
 
-.margin-home{
-    margin: 20px 20px 20px 20px;
+table {
+  width: 100%;
+  height: 100%;
+}
+
+.table-container {
+  height: 200px;
+  overflow: auto;
 }

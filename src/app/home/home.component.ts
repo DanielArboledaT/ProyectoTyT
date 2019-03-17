@@ -9,70 +9,101 @@ export class HomeComponent implements OnInit {
 
   single: any[];
   multi: any[];
-
-  view: any[];
+  pedidosUrgentes: any[];
+  displayedColumns: string[] = [ 'Id', 'Nombre', 'Valor', 'Fecha de entrega'];
 
   // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Ingresos';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#A000CC', '#CCBE00', '#00CC19']
   };
-
-  // line, area
-  autoScale = true;
 
   constructor() {
     this. multi = [
       {
-        "name": "Germany",
+        "name": "Adriana Lopez",
         "series": [
           {
-            "name": "2010",
+            "name": "01/01/2019",
             "value": 7300000
           },
           {
-            "name": "2011",
+            "name": "01/02/2019",
             "value": 8940000
+          },
+          {
+            "name": "01/03/2019",
+            "value": 8040000
           }
         ]
       },
     
       {
-        "name": "USA",
+        "name": "Jorge Tamayo",
         "series": [
           {
-            "name": "2010",
-            "value": 7870000
+            "name": "01/01/2019",
+            "value": 7800000
           },
           {
-            "name": "2011",
-            "value": 8270000
+            "name": "01/02/2019",
+            "value": 8000000
+          },
+          {
+            "name": "01/03/2019",
+            "value": 6040000
           }
         ]
       },
     
       {
-        "name": "France",
+        "name": "Adolfo Gonzales",
         "series": [
           {
-            "name": "2010",
-            "value": 5000002
+            "name": "01/01/2019",
+            "value": 7300000
           },
           {
-            "name": "2011",
-            "value": 5800000
+            "name": "01/02/2019",
+            "value": 9940000
+          },
+          {
+            "name": "01/03/2019",
+            "value": 7040000
           }
         ]
       }
     ];
+
+    this.pedidosUrgentes = [
+      {
+        id:"1",
+        nombre:"Pedido 1",
+        valor: "2000000",
+        fechaEntrega: "31/12/2019"
+      },
+      {
+        id:"2",
+        nombre:"Pedido 2",
+        valor: "3000000",
+        fechaEntrega: "31/12/2019"
+      },
+      {
+        id:"2",
+        nombre:"Pedido 2",
+        valor: "3000000",
+        fechaEntrega: "31/12/2019"
+      },
+      {
+        id:"2",
+        nombre:"Pedido 2",
+        valor: "3000000",
+        fechaEntrega: "31/12/2019"
+      }
+    ]
+      
+    
   }
 
   ngOnInit() {
