@@ -9,8 +9,14 @@ export class HomeComponent implements OnInit {
 
   single: any[];
   multi: any[];
+
+  //Estos son los settings de la tabla de pedidos urgentes
   pedidosUrgentes: any[];
-  displayedColumns: string[] = [ 'Id', 'Nombre','Fecha de entrega', 'Valor', 'Acciones'];
+  columnsPedidosUegentes: string[] = [ 'Id', 'Nombre','Fecha de entrega', 'Valor', 'Acciones'];
+
+  //Estos son los settings de la tabla de últimos pedidos
+  ultimosPedidos: any[];
+  columnsUltimosPedidos : string[] = [ 'Id', 'Nombre','Fecha de entrega', 'Valor', 'Acciones' ]
 
   // options
   yAxisLabel = 'Ingresos';
@@ -76,6 +82,7 @@ export class HomeComponent implements OnInit {
       }
     ];
 
+    //El array de la tabla de pedidos urgentes
     this.pedidosUrgentes = [
       {
         id:"1",
@@ -109,6 +116,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  //Esta finción hace la sumatoria del valor de los pedidos urgentes
   getTotalCost() {
     return this.pedidosUrgentes.map(v => v.valor).reduce( (acc, valor) => acc + parseInt(valor), 0);
   }

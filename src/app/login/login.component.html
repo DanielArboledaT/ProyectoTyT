@@ -6,11 +6,18 @@
     </div>
     <div class="login-form">
       <form class="example-form">
+        <div *ngIf="authInvalida" class="center">
+          <div  class="alert-danger  alerta">
+            Usuario o contraseña son incorrectas
+          </div>
+        </div>
+        
         <mat-form-field class="example-full-width" style="width: 80%;">
-          <input matInput placeholder="Usuario"/>
+          <input matInput placeholder="Usuario" name="user" id="user" [(ngModel)]="user.user"/>
         </mat-form-field>
         <mat-form-field class="example-full-width" style="width: 80%;" >
-            <input type="password" matInput placeholder="contraseña"/>
+            <input type="password" matInput placeholder="contraseña" name="password" id="password" 
+                  [(ngModel)]="user.password"/>
         </mat-form-field>
         <!--<div style="margin-bottom: 10px;">
                     <label> Usuario</label>
@@ -24,7 +31,7 @@
       </form>
       
       <div class="center">
-            <button *ngIf="!cargando" type="button" class="btn" routerLink="/home">Ingresar</button>
+            <button *ngIf="!cargando" type="button" class="btn" (click)="autenticar()">Ingresar</button>
             <button *ngIf="cargando" class="btn" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Ingresando...
