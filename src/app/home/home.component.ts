@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   single: any[];
   multi: any[];
   pedidosUrgentes: any[];
-  displayedColumns: string[] = [ 'Id', 'Nombre', 'Valor', 'Fecha de entrega'];
+  displayedColumns: string[] = [ 'Id', 'Nombre','Fecha de entrega', 'Valor', 'Acciones'];
 
   // options
   yAxisLabel = 'Ingresos';
@@ -80,24 +80,24 @@ export class HomeComponent implements OnInit {
       {
         id:"1",
         nombre:"Pedido 1",
-        valor: "2000000",
+        valor: 200000,
         fechaEntrega: "31/12/2019"
       },
       {
         id:"2",
         nombre:"Pedido 2",
-        valor: "3000000",
+        valor: 3000000,
         fechaEntrega: "31/12/2019"
       },
       {
-        id:"2",
-        nombre:"Pedido 2",
-        valor: "3000000",
+        id:"3",
+        nombre:"Pedido 3",
+        valor: 300000,
         fechaEntrega: "31/12/2019"
       },
       {
-        id:"2",
-        nombre:"Pedido 2",
+        id:"4",
+        nombre:"Pedido 4",
         valor: "3000000",
         fechaEntrega: "31/12/2019"
       }
@@ -107,6 +107,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  getTotalCost() {
+    return this.pedidosUrgentes.map(v => v.valor).reduce( (acc, valor) => acc + parseInt(valor), 0);
   }
 
 }
