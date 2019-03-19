@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     let valido = this.loginService.autenticar(this.user);
 
     if( valido ){
-      this.route.navigate(['/home']);
+      this.route.navigate(['/home/notificaciones']);
     }else{
       this.authInvalida = true;
     }

@@ -1,0 +1,70 @@
+.spinner{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.vendedor{
+    width: 100%;
+    height: 440px;
+}
+
+.vendedor img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid white;
+    position: absolute;
+    top: 75px;
+}
+
+.card-banner{
+    width: 100%;
+    height: 150px;
+    background: url('../../assets/img/banner-vendedor.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    display: flex;
+    justify-content: center;
+}
+
+.info-vendedor{
+    text-align: center;
+    margin-top: 80px;
+    
+}
+
+.info-vendedor .datos{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.info-vendedor .datos div{
+    margin-top: 30px;
+    padding: 0 10px;
+    width: 50%;
+}
+
+.info-vendedor .datos div p{
+    margin: 10px 0 0 0;
+    padding: 0;
+    color: grey;
+}
+
+.info-vendedor .datos #izquierdo{
+    border-right: 1px solid grey;
+}
+
+.ver-vendedor{
+    display: flex;
+    justify-content: center;
+}
+
+.ver-vendedor button{
+    margin-top: 20px;
+    width: 50%;
+    border-radius: 50px;
+}
+
