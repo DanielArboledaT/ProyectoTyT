@@ -1,6 +1,8 @@
 export class Vendedores{
     
     idVendedor: number;
+    idAdministrador: number;
+    idImgPerfil: number;
     primerNombre: string;
     segundoNombre: string;
     primerApellido: string;

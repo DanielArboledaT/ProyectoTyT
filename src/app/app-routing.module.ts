@@ -4,6 +4,7 @@ import { LoginComponent } from 'src/app/login/login.component';
 import { HomeComponent } from 'src/app/home/home.component';
 import { VendedoresComponent } from 'src/app/vendedores/vendedores.component';
 import { NotificacionesComponent } from 'src/app/notificaciones/notificaciones.component';
+import { DetalleComponent } from 'src/app/vendedores/detalle/detalle.component';
 
 const routes: Routes = [
   {path: 'login' , component: LoginComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
     
     children : [
       {path: 'vendedores', component: VendedoresComponent},
+      {path: 'vendedores/detalle', component: DetalleComponent},
       {path: 'notificaciones', component: NotificacionesComponent}
     ]
 

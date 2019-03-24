@@ -6,26 +6,55 @@
 
 <div *ngIf="!cargandoVendedores">
   <div class="row" style="margin: 20px 20px;">
-    <div  *ngFor="let vendedor of vendedores" class="col-sm-4" >
-      <div class="card vendedor">
-        <div class="card-banner">
-          <img src="../../assets/img/perfil.jpg" alt="Banner" />
-        </div>
-        <div class="info-vendedor">
-          <h5>{{vendedor.primerNombre}} {{vendedor.primerApellido}}</h5>
-          <div class="datos">
-            <div id="izquierdo">
-              <strong>Identificación</strong>
-              <p>{{vendedor.identificacion}}</p>
+    <div class="col-sm-6">
+        <div class="vendedor insertar" (click)="InsertarVendedor()">
+            <div style="width: 150px; height: 150px;">
+              <img src="../../assets/img/plus.png" alt="Imagen perfil" />
             </div>
-            <div>
-              <strong>Teléfono</strong>
-              <p>{{vendedor.telefono}}</p>
+            <div class="centrar">
+              <div>
+                <h2>Agregar nuevo vendedor</h2>
+              </div>
+              
             </div>
           </div>
+    </div>
+    
+
+    <div *ngFor="let vendedor of vendedores" class="col-sm-6">
+      <div class="vendedor">
+        <div style="width: 150px; height: 150px;">
+          <img src="../../assets/img/perfil.jpg" alt="Imagen perfil" />
         </div>
-        <div class="ver-vendedor">
-          <button type="button" class="btn btn-outline-primary">Ver en detalle</button>
+        <div class="info-vendedor">
+          <div id="izquierda">
+            <h4>{{ vendedor.primerNombre }} {{ vendedor.primerApellido }}</h4>
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              (click)="verDetalle(vendedor)"
+            >
+              <i class="fa fa-eye" aria-hidden="true"></i> Ver en detalle
+            </button>
+          </div>
+          <div id="derecho">
+            <h4>Identificación</h4>
+            <p>{{ vendedor.identificacion }}</p>
+            <button
+              *ngIf="vendedor.estado == 'A'"
+              type="button"
+              class="btn btn-outline-danger"
+            >
+              <i class="fa fa-trash" aria-hidden="true"></i> Deactivar vendedor
+            </button>
+            <button
+              *ngIf="vendedor.estado == 'I'"
+              type="button"
+              class="btn btn-outline-success"
+            >
+              <i class="fa fa-check" aria-hidden="true"></i> Activar vendedor
+            </button>
+          </div>
         </div>
       </div>
     </div>

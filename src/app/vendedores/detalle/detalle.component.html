@@ -1,3 +1,99 @@
-<p>
-  detalle works!
-</p>
+<div class="main-container">
+  <div class="info-container">
+    <div class="card vendedor">
+      <div class="card-banner">
+        <img src="../../assets/img/perfil.jpg" alt="Banner" />
+      </div>
+      <div class="info-vendedor">
+        <h5>
+          {{ detalleVendedor.primerNombre }}
+          {{ detalleVendedor.primerApellido }}
+        </h5>
+        <hr />
+        <div class="datos">
+          <div>
+            <h6>Nombres</h6>
+          </div>
+          <div>
+            <p>
+              {{ detalleVendedor.primerNombre }}
+              {{ detalleVendedor.segundoNombre }}
+            </p>
+          </div>
+        </div>
+        <div class="datos">
+          <div>
+            <h6>Apellidos</h6>
+          </div>
+          <div>
+            <p>
+              {{ detalleVendedor.primerApellido }}
+              {{ detalleVendedor.segundoApellido }}
+            </p>
+          </div>
+        </div>
+        <div class="datos">
+          <div>
+            <h6>Identificación</h6>
+          </div>
+          <div>
+            <p>{{ detalleVendedor.identificacion }}</p>
+          </div>
+        </div>
+        <div class="datos">
+          <div>
+            <h6>Teléfono</h6>
+          </div>
+          <div>
+            <p>{{ detalleVendedor.telefono }}</p>
+          </div>
+        </div>
+        <div class="datos">
+          <div>
+            <h6>Dirección</h6>
+          </div>
+          <div>
+            <p>{{ detalleVendedor.direccion }}</p>
+          </div>
+        </div>
+        <div class="datos">
+          <div>
+            <h6>Ciudad</h6>
+          </div>
+          <div>
+            <p>{{ detalleVendedor.ciudad }}</p>
+          </div>
+        </div>
+        <div class="datos">
+          <div>
+            <h6>Departamento</h6>
+          </div>
+          <div>
+            <p>{{ detalleVendedor.departamento }}</p>
+          </div>
+        </div>
+        <div class="datos">
+          <div>
+            <h6>Email</h6>
+          </div>
+          <div>
+            <p>{{ detalleVendedor.email }}</p>
+          </div>
+        </div>
+        <div class="datos" style="border: none;">
+          <div>
+            <h6>Fecha de infreso</h6>
+          </div>
+          <div>
+            <p>{{ detalleVendedor.fechaIngreso }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        
+        Agregado por: Daniel Arboleda
+      </div>
+    </div>
+  </div>
+</div>

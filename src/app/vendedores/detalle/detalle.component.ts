@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VendedoresService } from 'src/app/common/services/vendedores.service';
+import { Vendedores } from 'src/app/common/clases/vendedores';
 
 @Component({
   selector: 'app-detalle',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleComponent implements OnInit {
 
-  constructor() { }
+  detalleVendedor: Vendedores;
+
+  constructor(private vendedoresService: VendedoresService) { }
 
   ngOnInit() {
+    this.detalleVendedor = this.vendedoresService.getDetalleVendedor();
+    console.log("detalleVendedor", this.detalleVendedor);
   }
 
 }
