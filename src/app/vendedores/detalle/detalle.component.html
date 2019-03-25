@@ -2,8 +2,56 @@
   <div class="info-container">
     <div class="card vendedor">
       <div class="card-banner">
-        <img src="../../assets/img/perfil.jpg" alt="Banner" />
+        <div
+          style="display: flex;
+        justify-content: center;"
+        >
+          <div class="imagen-perfil">
+            <img  [src]="imagenPerfil" alt="Imagen perfil" />
+            <input
+              type="file"
+              style="display: none;"
+              #imageUpload
+              accept="image/"
+              (change)="fileChange($event)"
+            />
+            <button
+              *ngIf="!imagenAgregada; else botonGuardar"
+              type="button"
+              class="btn btn-primary miboton"
+              (click)="imageUpload.click()"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Subir imagen"
+            >
+              <i class="fa fa-camera" aria-hidden="true"></i>
+            </button>
+            <ng-template #botonGuardar>
+              <button
+                type="button"
+                class="btn btn-primary miboton"
+                (click)="upload()"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Guardar"
+              >
+                <i class="fa fa-check" aria-hidden="true"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger boton-cancelar"
+                (click)="limpiar()"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Guardar"
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </ng-template>
+          </div>
+        </div>
       </div>
+
       <div class="info-vendedor">
         <h5>
           {{ detalleVendedor.primerNombre }}
@@ -91,7 +139,6 @@
       </div>
 
       <div class="card-footer">
-        
         Agregado por: Daniel Arboleda
       </div>
     </div>

@@ -7,6 +7,10 @@ import { MatTableModule } from '@angular/material/table';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -32,7 +36,10 @@ import { DetalleComponent } from './vendedores/detalle/detalle.component';
     NgxChartsModule,
     MatTableModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.fireBaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

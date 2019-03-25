@@ -14,13 +14,34 @@
     height: 100%;
 }
 
-.vendedor img{
+.imagen-perfil{
     width: 150px;
     height: 150px;
-    border-radius: 50%;
-    border: 3px solid white;
-    position: absolute;
+    position: relative;
     top: 95px;
+    
+}
+
+.imagen-perfil img{
+    border: 3px solid white;
+    position: relative;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.miboton{
+    position: absolute;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+}
+
+.boton-cancelar{
+    position: absolute;
+    border-radius: 50%;
+    left: 0;
+    bottom: 0;
 }
 
 .card-banner{
@@ -30,9 +51,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    display: flex;
-    justify-content: center;
 }
+
 
 .info-vendedor{
     text-align: center;
