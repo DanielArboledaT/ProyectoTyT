@@ -1,0 +1,31 @@
+.imagen{
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.imagen img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.miboton{
+    position: absolute;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+}
+
+.boton-cancelar{
+    position: absolute;
+    border-radius: 50%;
+    left: 0;
+    bottom: 0;
+}
+
+.card-footer button{
+    float: right;
+}

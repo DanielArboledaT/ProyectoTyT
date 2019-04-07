@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { VendedoresComponent } from './vendedores/vendedores.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { DetalleComponent } from './vendedores/detalle/detalle.component';
+import { InsertarVendedorComponent } from './vendedores/insertar-vendedor/insertar-vendedor.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DetalleComponent } from './vendedores/detalle/detalle.component';
     HomeComponent,
     VendedoresComponent,
     NotificacionesComponent,
-    DetalleComponent
+    DetalleComponent,
+    InsertarVendedorComponent
   ],
   imports: [
     BrowserModule,

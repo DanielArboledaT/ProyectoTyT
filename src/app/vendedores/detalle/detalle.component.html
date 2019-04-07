@@ -7,7 +7,7 @@
         justify-content: center;"
         >
           <div class="imagen-perfil">
-            <img  [src]="imagenPerfil" alt="Imagen perfil" />
+            <img [src]="imagenPerfil" alt="Imagen perfil" />
             <input
               type="file"
               style="display: none;"
@@ -53,10 +53,14 @@
       </div>
 
       <div class="info-vendedor">
+        <button type="button" class="btn btn-link boton-edit" (click)="editarVendedor()">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
         <h5>
           {{ detalleVendedor.primerNombre }}
           {{ detalleVendedor.primerApellido }}
         </h5>
+
         <hr />
         <div class="datos">
           <div>

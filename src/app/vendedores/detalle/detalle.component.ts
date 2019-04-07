@@ -4,6 +4,8 @@ import { Vendedores } from 'src/app/common/clases/vendedores';
 import { AngularFireStorage} from '@angular/fire/storage';
 import { ObjetoImg } from 'src/app/common/clases/objetoImg';
 import { UploadImagenService } from 'src/app/common/services/upload-imagen.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-detalle',
@@ -18,7 +20,8 @@ export class DetalleComponent implements OnInit {
   imagenPerfil;
 
   constructor(private vendedoresService: VendedoresService, 
-    private uploadImgService: UploadImagenService) { 
+    private uploadImgService: UploadImagenService,
+    private router : Router) { 
     this.objImagen = new ObjetoImg();
     this.imagenAgregada = false;
     this.imagenPerfil = "../../assets/img/perfil.jpg";
@@ -48,8 +51,9 @@ export class DetalleComponent implements OnInit {
   }
 
   upload(){
+
     this.uploadImgService.uploadImagen( this.objImagen ).subscribe(res =>{
-      console.log("Url imagen ****",res);
+      console.log(res);
     },
     err => console.log(err), 
     () => {
@@ -61,6 +65,11 @@ export class DetalleComponent implements OnInit {
     this.objImagen = new ObjetoImg();
     this.imagenAgregada = false;
     this.imagenPerfil = "../../assets/img/perfil.jpg";
+  }
+
+  editarVendedor(){
+    this.vendedoresService.setDetalleVendedor(this.detalleVendedor);
+    this.router.navigate(['home/vendedores/insertar']);
   }
 
 }
