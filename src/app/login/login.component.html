@@ -7,41 +7,31 @@
     <div class="login-form">
       <form class="example-form">
         <div *ngIf="authInvalida" class="center">
-          <div  class="alert-danger  alerta">
+          <div class="alert-danger  alerta">
             Usuario o contraseña son incorrectas
           </div>
         </div>
-        
+
         <mat-form-field class="example-full-width" style="width: 80%;">
-          <input matInput placeholder="Usuario" name="user" id="user" [(ngModel)]="user.user"/>
+          <input matInput placeholder="Usuario" name="user" id="user" [(ngModel)]="user.user" />
         </mat-form-field>
-        <mat-form-field class="example-full-width" style="width: 80%;" >
-            <input type="password" matInput placeholder="contraseña" name="password" id="password" 
-                  [(ngModel)]="user.password"/>
+        <mat-form-field class="example-full-width" style="width: 80%;">
+          <input type="password" matInput placeholder="contraseña" name="password" id="password"
+            [(ngModel)]="user.password" />
         </mat-form-field>
-        <!--<div style="margin-bottom: 10px;">
-                    <label> Usuario</label>
-                    <input type="text" class="form-control" placeholder="Usuario">
-                    <label style="padding-top: 5px">Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Contraseña">
-                </div>
-                <a href="">¿Olvistate tu contraseña?</a>
-                <button type="button" class="btn">Conectar</button>-->
-        
+        <div class="center">
+          <button *ngIf="!cargando" type="input" class="btn" (click)="autenticar()">Ingresar</button>
+          <button *ngIf="cargando" class="btn" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Ingresando...
+          </button>
+        </div>
+        <div class="center">
+          <a href="">¿Olvidaste tu contraseña?</a>
+        </div>
+
       </form>
-      
-      <div class="center">
-            <button *ngIf="!cargando" type="button" class="btn" (click)="autenticar()">Ingresar</button>
-            <button *ngIf="cargando" class="btn" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Ingresando...
-            </button>
-      </div>
-      <div class="center">
-            <a href="">¿Olvidaste tu contraseña?</a>
-      </div>
-      
-      
+
     </div>
   </div>
 </div>
