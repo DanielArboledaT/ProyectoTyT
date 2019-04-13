@@ -29,72 +29,59 @@
               >
                 <i class="fa fa-camera" aria-hidden="true"></i>
               </button>
-
-              <ng-template #botonGuardar>
-                <button
-                  type="button"
-                  class="btn btn-primary miboton"
-                  (click)="upload()"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Guardar"
-                >
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-danger boton-cancelar"
-                  (click)="limpiar()"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Guardar"
-                >
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                </button>
-              </ng-template>
             </div>
           </div>
 
           <div class="col-sm-5">
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Primer nombre" />
+              <input matInput placeholder="Primer nombre" name="primerNombre"
+                    id="primerNombre" [(ngModel)]="nuevoVendedor.primerNombre"/>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Primer apellido" />
+              <input matInput placeholder="Primer apellido" name="primerApellido"
+                    id="primerApellido" [(ngModel)]="nuevoVendedor.primerApellido"/>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Identificación" />
+              <input matInput placeholder="Identificación" name="identificacion"
+                    id="identificacion" [(ngModel)]="nuevoVendedor.identificacion"/>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Dirección" />
+              <input matInput placeholder="Dirección" name="direccion"
+                    id="direccion" [(ngModel)]="nuevoVendedor.direccion"/>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Ciudad" />
+              <input matInput placeholder="Ciudad" name="ciudad"
+                    id="ciudad" [(ngModel)]="nuevoVendedor.ciudad"/>
             </mat-form-field>
           </div>
 
           <div class="col-sm-5">
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Segundo nombre" />
+              <input matInput placeholder="Segundo nombre" name="segundoNombre"
+                    id="segundoNombre" [(ngModel)]="nuevoVendedor.segundoNombre"/>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Segundo apellido" />
+              <input matInput placeholder="Segundo apellido" name="segundoNombre"
+                      id="segundoApellido" [(ngModel)]="nuevoVendedor.segundoApellido"/>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Email" />
+              <input matInput placeholder="Email" name="email"
+                   id="email" [(ngModel)]="nuevoVendedor.email"/>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Teléfono" />
+              <input matInput placeholder="Teléfono" name="telefono"
+                    id="telefono" [(ngModel)]="nuevoVendedor.telefono"/>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Departamento" />
+              <input matInput placeholder="Departamento" name="departamento"
+                    id="departamento" [(ngModel)]="nuevoVendedor.departamento"/>
             </mat-form-field>
           </div>
         </div>
       </div>
 
       <div class="card-footer">
-        <button type="button" class="btn btn-outline-primary">
+        <button type="button" class="btn btn-outline-primary" (click)="guardar()">
           <i class="fa fa-check" aria-hidden="true"></i>
           Guardar
         </button>

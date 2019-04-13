@@ -12,7 +12,7 @@ export class Vendedores{
     telefono: number;
     ciudad: string;
     departamento: string;
-    fechaIngreso: string;
+    fechaIngreso: Date;
     estado: string;
     email: string;
 

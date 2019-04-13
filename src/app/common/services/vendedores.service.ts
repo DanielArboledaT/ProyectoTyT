@@ -22,6 +22,13 @@ export class VendedoresService {
     return this.httpClient.get<any>(url);
   }
 
+  guardarNuevoVendedor( vendedor: Vendedores ): Observable<any>{
+
+    const url = this.ulrVentas + '/guardar';
+    return this.httpClient.post<any>(url, vendedor)
+
+  }
+
   setDetalleVendedor( vendedor: Vendedores ){
     this.detalleVendedor = vendedor;
   }

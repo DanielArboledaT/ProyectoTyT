@@ -53,9 +53,7 @@
       </div>
 
       <div class="info-vendedor">
-        <button type="button" class="btn btn-link boton-edit" (click)="editarVendedor()">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-        </button>
+        
         <h5>
           {{ detalleVendedor.primerNombre }}
           {{ detalleVendedor.primerApellido }}
@@ -134,12 +132,18 @@
         </div>
         <div class="datos" style="border: none;">
           <div>
-            <h6>Fecha de infreso</h6>
+            <h6>Fecha de ingreso</h6>
           </div>
           <div>
             <p>{{ detalleVendedor.fechaIngreso }}</p>
           </div>
         </div>
+      </div>
+
+      <div class="text-center" style="margin-bottom: 10px;">
+        <button type="button" class="btn btn-primary" (click)="editarVendedor()">
+          <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+        </button>
       </div>
 
       <div class="card-footer">
