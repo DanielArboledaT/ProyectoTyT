@@ -23,8 +23,11 @@
 
     <div *ngFor="let vendedor of vendedores" class="col-sm-6">
       <div class="vendedor">
-        <div style="width: 150px; height: 150px;">
-          <img src="../../assets/img/perfil.jpg" alt="Imagen perfil" />
+        <div *ngIf="vendedor.idImgPerfil !== null" style="width: 150px; height: 150px;">
+          <img  src="{{vendedor.imgPerfil.url}}" alt="Imagen perfil" />
+        </div>
+        <div *ngIf="vendedor.idImgPerfil === null" style="width: 150px; height: 150px;">
+          <img  src="../../assets/img/user.png" alt="Imagen perfil" />
         </div>
         <div class="info-vendedor">
           <div id="izquierda">
@@ -44,6 +47,7 @@
               *ngIf="vendedor.estado == 'A'"
               type="button"
               class="btn btn-outline-danger"
+              (click)="cambiarEstado(vendedor)"
             >
               <i class="fa fa-trash" aria-hidden="true"></i> Deactivar vendedor
             </button>
@@ -51,6 +55,7 @@
               *ngIf="vendedor.estado == 'I'"
               type="button"
               class="btn btn-outline-success"
+              (click)="cambiarEstado(vendedor)"
             >
               <i class="fa fa-check" aria-hidden="true"></i> Activar vendedor
             </button>

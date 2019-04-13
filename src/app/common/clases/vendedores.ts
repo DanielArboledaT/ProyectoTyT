@@ -1,3 +1,4 @@
+import { ImgPerfil } from 'src/app/common/clases/img-perfil';
 export class Vendedores{
     
     idVendedor: number;
@@ -15,5 +16,5 @@ export class Vendedores{
     fechaIngreso: Date;
     estado: string;
     email: string;
-
+    imgPerfil: ImgPerfil;
 }

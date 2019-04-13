@@ -29,6 +29,20 @@ export class VendedoresService {
 
   }
 
+  actualizarVendedor( vendedor: Vendedores ){
+
+    const url = this.ulrVentas + '/actualizar';
+    return this.httpClient.put<any>(url, vendedor)
+
+  }
+
+  cambiarEstadoVendedor( vendedor: Vendedores ){
+
+    const url = this.ulrVentas + '/cambiarEstado';
+    return this.httpClient.put<any>(url, vendedor)
+
+  }
+
   setDetalleVendedor( vendedor: Vendedores ){
     this.detalleVendedor = vendedor;
   }

@@ -3,6 +3,8 @@ import { UploadImagenService } from 'src/app/common/services/upload-imagen.servi
 import { Vendedores } from 'src/app/common/clases/vendedores';
 import { VendedoresService } from 'src/app/common/services/vendedores.service';
 import { ObjetoImg } from 'src/app/common/clases/objetoImg';
+import { ImgPerfilService } from 'src/app/common/services/img-perfil.service';
+import { ImgPerfil } from 'src/app/common/clases/img-perfil';
 
 @Component({
   selector: 'app-insertar-vendedor',
@@ -17,24 +19,29 @@ export class InsertarVendedorComponent implements OnInit {
   nuevoVendedor: Vendedores;
   imgPerfilNueva: boolean;
   private urlImg: string;
+  cargando: boolean;
 
   constructor(private uploadImgService: UploadImagenService, 
-    private vendedoresService: VendedoresService) { 
+    private vendedoresService: VendedoresService,
+    private imgPerfilService: ImgPerfilService) { 
 
     this.objImagen = new ObjetoImg();
-    this.imagenPerfil = "../../assets/img/user.png";
     this.imgPerfilNueva = false;
+    this.cargando = false;
 
   }
 
   ngOnInit() {
     this.detalleVendedor = this.vendedoresService.getDetalleVendedor();
     this.vendedoresService.setDetalleVendedor(new Vendedores());
-    console.log("Detalle desde insertar", this.detalleVendedor);
 
     if(this.detalleVendedor === undefined){
       this.nuevoVendedor = new Vendedores();
+    }else{
+      this.nuevoVendedor = this.detalleVendedor;
     }
+    console.log("Detalle desde insertar", this.detalleVendedor);
+  
 
   }
 
@@ -59,44 +66,88 @@ export class InsertarVendedorComponent implements OnInit {
     this.imagenPerfil = "../../assets/img/user.png";
   }
 
-  async guardar(){
+   guardar(){
+     this.cargando = true;
     //Es un nuevo vendedor
     if(this.detalleVendedor === undefined){
+      
+      console.log("entre")
       this.nuevoVendedor.fechaIngreso = new Date();
       this.nuevoVendedor.idAdministrador = 1;
 
       if(this.imgPerfilNueva){
-        let url = await this.uploadImg(this.nuevoVendedor);
+        this.uploadImg(this.nuevoVendedor);
+      }else{
+        this.guardarVendedorNuevo();
       }
-      
-      /*this.vendedoresService.guardarNuevoVendedor(this.nuevoVendedor)
-        .subscribe( res =>{
-          console.log(res);
-        })*/
+
+
+    }else if(this.detalleVendedor !== undefined){
+
+      if(this.imgPerfilNueva){
+        this.uploadImg(this.nuevoVendedor);
+      }else{
+        this.actualizarVendedor();
+      }
 
     }
 
-
-
   }
 
-  async uploadImg( vendedor ){
+  uploadImg( vendedor ){
+    console.log("vendedor",vendedor)
     this.objImagen.idImg = Math.random().toString(36).substring(2);
     this.objImagen.nombre = `${vendedor.primerNombre}_${vendedor.primerApellido}`;
     this.objImagen.filePath = `uploads/vendedor/${this.objImagen.nombre}/profile_${this.objImagen.nombre}`;
 
-    this.uploadImgService.uploadImagen( this.objImagen ).subscribe(res =>{
+    this.uploadImgService.uploadImagen( this.objImagen ).subscribe(async res =>{
       console.log(res);
-      this.urlImg = res;
-    },
-    err => console.log(err), 
-    () => {
-      this.imgPerfilNueva = false;
+       this.urlImg = await res;
+       this.guardarImgPerfil(this.urlImg);
     });
   }
 
-  guardarImgPerfil(){
+  guardarImgPerfil(url: string){
     
+    let imgPerfilNueva = new ImgPerfil();
+    imgPerfilNueva.url = url;
+    console.log("imgPerfilNueva", imgPerfilNueva);
+
+    this.imgPerfilService.guardarNuevaImgPerfil(imgPerfilNueva).subscribe(res => {
+      console.log(res);
+      let idImg = res.idImgPerfil;
+      if(this.detalleVendedor === undefined){
+        this.guardarVendedorNuevo(idImg);
+      }else if(this.detalleVendedor !== undefined){
+        this.actualizarVendedor(idImg)
+      }
+      
+      
+    })
+
+  }
+
+  guardarVendedorNuevo(idImg?: number){
+
+    this.nuevoVendedor.idImgPerfil = idImg;
+    this.vendedoresService.guardarNuevoVendedor(this.nuevoVendedor)
+      .subscribe( res =>{
+        console.log(res);
+      },
+      (err) => console.log(err),
+      () => {
+        this.cargando = false;
+      })
+
+  }
+
+  actualizarVendedor(idImg?: number){
+    
+    this.nuevoVendedor.idImgPerfil = idImg;
+    this.vendedoresService.actualizarVendedor(this.nuevoVendedor).subscribe(res => {
+      console.log("actualizado", res);
+    })
+
   }
 
 }

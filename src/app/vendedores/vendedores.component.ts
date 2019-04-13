@@ -13,6 +13,7 @@ export class VendedoresComponent implements OnInit {
   cargandoVendedores: boolean;
   vendedores: Vendedores[];
   insertarVendedor: boolean;
+  
 
   constructor(private vendedoresService: VendedoresService,
               private router : Router) {
@@ -21,6 +22,10 @@ export class VendedoresComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.consultarVendedores();
+  }
+
+  consultarVendedores(){
     this.vendedoresService.consultarVendedores().subscribe(res => {
       this.vendedores = res;
       console.log(res);
@@ -41,6 +46,16 @@ export class VendedoresComponent implements OnInit {
   InsertarVendedor(){
 
     this.router.navigate(['home/vendedores/insertar']);
+  }
+
+  cambiarEstado(vendedor: Vendedores){
+    this.cargandoVendedores = true;
+    this.vendedoresService.cambiarEstadoVendedor(vendedor).subscribe(res => {
+      console.log("cambiar estado", res);
+      this.consultarVendedores();
+      this.cargandoVendedores = false;
+    })
+
   }
 
 }

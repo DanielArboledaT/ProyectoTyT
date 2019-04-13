@@ -10,7 +10,15 @@
           <div class="col-sm-2">
             <h6 style="padding: 10px;">Imagen de perfil</h6>
             <div class="imagen">
-              <img [src]="imagenPerfil" alt="user" />
+              <div *ngIf="nuevoVendedor.idImgPerfil !== null && !imgPerfilNueva">
+                <img  src="{{nuevoVendedor.imgPerfil.url}}" alt="Imagen perfil" />
+              </div>
+              <div *ngIf="nuevoVendedor.idImgPerfil === null && !imgPerfilNueva">
+                <img  src="../../assets/img/user.png" alt="Imagen perfil" />
+              </div>
+              <div *ngIf="imgPerfilNueva">
+                <img  [src]="imagenPerfil" alt="Imagen perfil" />
+              </div>
               <input
                 type="file"
                 style="display: none;"
@@ -81,9 +89,13 @@
       </div>
 
       <div class="card-footer">
-        <button type="button" class="btn btn-outline-primary" (click)="guardar()">
+        <button *ngIf="!cargando" type="button" class="btn btn-outline-primary" (click)="guardar()">
           <i class="fa fa-check" aria-hidden="true"></i>
           Guardar
+        </button>
+        <button *ngIf="cargando" class="btn btn-primary" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Cargando...
         </button>
         <button
           type="button"
