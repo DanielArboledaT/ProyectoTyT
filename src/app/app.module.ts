@@ -19,6 +19,8 @@ import { VendedoresComponent } from './vendedores/vendedores.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { DetalleComponent } from './vendedores/detalle/detalle.component';
 import { InsertarVendedorComponent } from './vendedores/insertar-vendedor/insertar-vendedor.component';
+import { ClientesComponent } from './clientes/clientes.component';
+import { InsertarClienteComponent } from './clientes/insertar-cliente/insertar-cliente.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { InsertarVendedorComponent } from './vendedores/insertar-vendedor/insert
     VendedoresComponent,
     NotificacionesComponent,
     DetalleComponent,
-    InsertarVendedorComponent
+    InsertarVendedorComponent,
+    ClientesComponent,
+    InsertarClienteComponent
   ],
   imports: [
     BrowserModule,

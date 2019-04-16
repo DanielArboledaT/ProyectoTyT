@@ -18,27 +18,27 @@ export class VendedoresService {
 
   consultarVendedores() : Observable<any>{
 
-    const url = this.ulrVentas + '/consulta';
+    const url = this.ulrVentas + '/vendedor/consulta';
     return this.httpClient.get<any>(url);
   }
 
   guardarNuevoVendedor( vendedor: Vendedores ): Observable<any>{
 
-    const url = this.ulrVentas + '/guardar';
+    const url = this.ulrVentas + '/vendedor/guardar';
     return this.httpClient.post<any>(url, vendedor)
 
   }
 
   actualizarVendedor( vendedor: Vendedores ){
 
-    const url = this.ulrVentas + '/actualizar';
+    const url = this.ulrVentas + '/vendedor/actualizar';
     return this.httpClient.put<any>(url, vendedor)
 
   }
 
   cambiarEstadoVendedor( vendedor: Vendedores ){
 
-    const url = this.ulrVentas + '/cambiarEstado';
+    const url = this.ulrVentas + '/vendedor/cambiarEstado';
     return this.httpClient.put<any>(url, vendedor)
 
   }

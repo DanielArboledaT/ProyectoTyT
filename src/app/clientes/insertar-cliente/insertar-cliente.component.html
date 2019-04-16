@@ -1,0 +1,82 @@
+<div style="margin: 20px 20px;">
+  <form>
+    <div class="card">
+      <div class=card-header>
+        Agregar cliente
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Primer nombre" name="primerNombre" id="primerNombre"
+                [(ngModel)]="nuevoCliente.primerNombre" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Primer apellido" name="primerApellido" id="primerApellido"
+                [(ngModel)]="nuevoCliente.primerApellido" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Identificación" name="identificacion" id="identificacion"
+                [(ngModel)]="nuevoCliente.identificacion" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Nit" name="nit" id="nit" [(ngModel)]="nuevoCliente.nit" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Dirección" name="direccion" id="direccion"
+                [(ngModel)]="nuevoCliente.direccion" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Ciudad" name="ciudad" id="ciudad" [(ngModel)]="nuevoCliente.ciudad" />
+            </mat-form-field>
+
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Segundo nombre" name="segundoNombre" id="segundoNombre"
+                [(ngModel)]="nuevoCliente.segundoNombre" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Segundo apellido" name="segundoNombre" id="segundoApellido"
+                [(ngModel)]="nuevoCliente.segundoApellido" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Nombre negocio" name="nombreNegocio" id="nombreNegocio"
+                [(ngModel)]="nuevoCliente.nombreNegocio" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Teléfono" name="telefono" id="telefono"
+                [(ngModel)]="nuevoCliente.telefono" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Email" name="email" id="email" [(ngModel)]="nuevoCliente.email" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <input matInput placeholder="Departamento" name="departamento" id="departamento"
+                [(ngModel)]="nuevoCliente.departamento" />
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <button *ngIf="!guardadoCliente" type="button" class="btn btn-outline-primary" (click)="guardarCliente()">
+          <i class="fa fa-check" aria-hidden="true"></i>
+          Guardar
+        </button>
+        <button *ngIf="guardadoCliente" class="btn btn-primary" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Cargando...
+        </button>
+        <button type="button" class="btn btn-outline-danger" style="margin-right: 10px;" routerLink="/home/clientes">
+          <i class="fa fa-times" aria-hidden="true"></i>
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

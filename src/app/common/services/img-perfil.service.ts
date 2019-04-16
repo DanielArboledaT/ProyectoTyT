@@ -17,7 +17,7 @@ export class ImgPerfilService {
 
   guardarNuevaImgPerfil( imgPerfil: ImgPerfil ): Observable<any>{
 
-    const url = this.ulrVentas + '/guardarImg';
+    const url = this.ulrVentas + '/imgPerfil/guardarImg';
     return this.httpClient.post<any>(url, imgPerfil)
 
   }
