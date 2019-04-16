@@ -27,14 +27,22 @@ export class ClientesComponent implements OnInit {
     'Acciones'
   ];
   cargandoClientes: boolean;
+  cargandoCambiarEstado: boolean;
 
   constructor(private route: Router, private clienteService: ClientesService) { 
-
-    this.cargandoClientes = true;
+    
+    this.cargandoCambiarEstado = false;
 
   }
 
   ngOnInit() {
+
+    this.consultarClientes();
+
+  }
+
+  consultarClientes(){
+    this.cargandoClientes = true;
     this.clienteService.consultarCliente().subscribe(res => {
 
       console.log(res);
@@ -49,7 +57,9 @@ export class ClientesComponent implements OnInit {
   }
 
   getTotalCost() {
+
     return this.listaClientes.map(v => v.valor).reduce( (acc, valor) => acc + parseInt(valor), 0);
+
   }
 
   clickInsertarCliente(){
@@ -59,7 +69,25 @@ export class ClientesComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
+
     this.listaClientes.filter = filterValue.trim().toLowerCase();
+
+  }
+
+  cambiarEstadoCliente(cliente){
+
+    this.cargandoCambiarEstado = true;
+    this.clienteService.cambiarEstadoCliente(cliente).subscribe(res => {
+
+      console.log(res);
+
+    },
+    err => console.log(err),
+    () => {
+      this.cargandoCambiarEstado = false;
+      this.consultarClientes();
+    })
+
   }
 
 }

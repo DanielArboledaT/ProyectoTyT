@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   URL_VENTAS: 'http://localhost:3000',
-  /*fireBaseConfig : {
+  fireBaseConfig : {
     apiKey: "AIzaSyCIuHXkzYJ19KSs-Z2bFvlnXL5LDjWSMrc",
     authDomain: "proyectotyt-6edf0.firebaseapp.com",
     databaseURL: "https://proyectotyt-6edf0.firebaseio.com",
     projectId: "proyectotyt-6edf0",
     storageBucket: "proyectotyt-6edf0.appspot.com",
     messagingSenderId: "812812189104"
-  }*/
+  }
 };
 
 /*

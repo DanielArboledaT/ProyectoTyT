@@ -31,5 +31,12 @@ export class ClientesService {
 
   }
 
+  cambiarEstadoCliente( cliente: Cliente ): Observable<any>{
+
+    const url = this.ulrVentas + '/clientes/cambiarEstado';
+    return this.httpClient.post<any>(url, cliente)
+
+  }
+
 
 }
