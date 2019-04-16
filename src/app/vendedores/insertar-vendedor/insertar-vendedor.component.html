@@ -10,10 +10,10 @@
           <div class="col-sm-2">
             <h6 style="padding: 10px;">Imagen de perfil</h6>
             <div class="imagen">
-              <div *ngIf="nuevoVendedor.idImgPerfil !== undefined && !imgPerfilNueva">
+              <div *ngIf="nuevoVendedor.idImgPerfil !== undefined && nuevoVendedor.imgPerfil !== null && !imgPerfilNueva">
                 <img  src="{{nuevoVendedor.imgPerfil.url}}" alt="Imagen perfil" />
               </div>
-              <div *ngIf="nuevoVendedor.idImgPerfil === undefined && !imgPerfilNueva">
+              <div *ngIf="(nuevoVendedor.idImgPerfil === undefined || nuevoVendedor.imgPerfil === null) && !imgPerfilNueva">
                 <img  src="../../assets/img/user.png" alt="Imagen perfil" />
               </div>
               <div *ngIf="imgPerfilNueva">
@@ -101,6 +101,7 @@
           type="button"
           class="btn btn-outline-danger"
           style="margin-right: 10px;"
+          routerLink="/home/vendedores"
         >
           <i class="fa fa-times" aria-hidden="true"></i>
           Cancelar

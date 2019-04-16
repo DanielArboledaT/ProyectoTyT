@@ -1,0 +1,14 @@
+.boton-times{
+    position: absolute;
+    right: 0;
+    top: 0;
+    
+}
+
+.boton-times button{
+    padding: 0;
+    margin: -20px -10px 0 0;
+    color: black;
+}
+
+

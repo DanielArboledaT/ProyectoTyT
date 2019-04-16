@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientesService } from 'src/app/common/services/clientes.service';
 import { MatTableDataSource } from '@angular/material';
+import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
+import { MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-clientes',
@@ -29,7 +32,10 @@ export class ClientesComponent implements OnInit {
   cargandoClientes: boolean;
   cargandoCambiarEstado: boolean;
 
-  constructor(private route: Router, private clienteService: ClientesService) { 
+  constructor(private route: Router, 
+    private clienteService: ClientesService,
+    private modalConfirmService: ModalConfirmacionService,
+    private snackBar: MatSnackBar) { 
     
     this.cargandoCambiarEstado = false;
 
@@ -76,17 +82,27 @@ export class ClientesComponent implements OnInit {
 
   cambiarEstadoCliente(cliente){
 
-    this.cargandoCambiarEstado = true;
-    this.clienteService.cambiarEstadoCliente(cliente).subscribe(res => {
+    this.modalConfirmService.openConfirmDialog('¿Esta seguro que desea cambiar el estado del cliente?') 
+      .afterClosed().subscribe(res => {
+        
+        if(res){
+          this.cargandoCambiarEstado = true;
+          this.clienteService.cambiarEstadoCliente(cliente).subscribe(res => {
+      
+            console.log(res);
+      
+          },
+          err => console.log(err),
+          () => {
+            this.cargandoCambiarEstado = false;
+            this.consultarClientes();
+            this.snackBar.open('Accion realizada exitosamente', 'Ok');
+          })
+        }
 
-      console.log(res);
+      });
 
-    },
-    err => console.log(err),
-    () => {
-      this.cargandoCambiarEstado = false;
-      this.consultarClientes();
-    })
+    
 
   }
 

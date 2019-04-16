@@ -1,0 +1,22 @@
+<div class="position-relative">
+  <div class="boton-times">
+    <button mat-flat-button class="btn btn-link" [mat-dialog-close]="false">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <h3 mat-dialog-title>Confirmación</h3>
+  <mat-dialog-content class="text-center">
+    <h5>{{date.mensaje}}</h5>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" class="footer">
+    <button mat-flat-button [mat-dialog-close]="false" style="margin-right: 10px;" class="btn btn-outline-primary">
+      <i class="fa fa-times" aria-hidden="true"></i>
+      NO
+    </button>
+    <button mat-flat-button [mat-dialog-close]="true" class="btn btn-outline-warning">
+      <i class="fa fa-check" aria-hidden="true"></i>
+      SI
+    </button>
+  </mat-dialog-actions>
+</div>

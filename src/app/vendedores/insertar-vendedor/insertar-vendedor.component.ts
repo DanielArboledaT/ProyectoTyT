@@ -5,6 +5,8 @@ import { VendedoresService } from 'src/app/common/services/vendedores.service';
 import { ObjetoImg } from 'src/app/common/clases/objetoImg';
 import { ImgPerfilService } from 'src/app/common/services/img-perfil.service';
 import { ImgPerfil } from 'src/app/common/clases/img-perfil';
+import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-insertar-vendedor',
@@ -23,7 +25,9 @@ export class InsertarVendedorComponent implements OnInit {
 
   constructor(private uploadImgService: UploadImagenService, 
     private vendedoresService: VendedoresService,
-    private imgPerfilService: ImgPerfilService) { 
+    private imgPerfilService: ImgPerfilService,
+    private modalConfirmService: ModalConfirmacionService,
+    private snackBar: MatSnackBar) { 
 
     this.objImagen = new ObjetoImg();
     this.imgPerfilNueva = false;
@@ -67,30 +71,41 @@ export class InsertarVendedorComponent implements OnInit {
   }
 
    guardar(){
-     this.cargando = true;
-    //Es un nuevo vendedor
-    if(this.detalleVendedor === undefined){
+
+    this.modalConfirmService.openConfirmDialog('¿Esta seguro que desea guardar los cambios?') 
+      .afterClosed().subscribe(res => {
+
+        if(res){
+
+          this.cargando = true;
+          //Es un nuevo vendedor
+          if(this.detalleVendedor === undefined){
+            
+            console.log("entre")
+            this.nuevoVendedor.fechaIngreso = new Date();
+            this.nuevoVendedor.idAdministrador = 1;
       
-      console.log("entre")
-      this.nuevoVendedor.fechaIngreso = new Date();
-      this.nuevoVendedor.idAdministrador = 1;
+            if(this.imgPerfilNueva){
+              this.uploadImg(this.nuevoVendedor);
+            }else{
+              this.guardarVendedorNuevo();
+            }
+      
+      
+          }else if(this.detalleVendedor !== undefined){
+      
+            if(this.imgPerfilNueva){
+              this.uploadImg(this.nuevoVendedor);
+            }else{
+              this.actualizarVendedor();
+            }
+      
+          }
 
-      if(this.imgPerfilNueva){
-        this.uploadImg(this.nuevoVendedor);
-      }else{
-        this.guardarVendedorNuevo();
-      }
+        }
 
-
-    }else if(this.detalleVendedor !== undefined){
-
-      if(this.imgPerfilNueva){
-        this.uploadImg(this.nuevoVendedor);
-      }else{
-        this.actualizarVendedor();
-      }
-
-    }
+      })
+    
 
   }
 
@@ -137,15 +152,23 @@ export class InsertarVendedorComponent implements OnInit {
       (err) => console.log(err),
       () => {
         this.cargando = false;
+        this.snackBar.open('Cambios guardados exitosamente', 'Ok');
       })
 
   }
 
   actualizarVendedor(idImg?: number){
-    
-    this.nuevoVendedor.idImgPerfil = idImg;
+
+    if(idImg !== undefined){
+      this.nuevoVendedor.idImgPerfil = idImg;
+    }
     this.vendedoresService.actualizarVendedor(this.nuevoVendedor).subscribe(res => {
       console.log("actualizado", res);
+    },
+    (err) => console.log(err),
+    () => {
+      this.cargando = false;
+      this.snackBar.open('Cambios guardados exitosamente', 'Ok');
     })
 
   }

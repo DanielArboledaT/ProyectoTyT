@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { VendedoresService } from 'src/app/common/services/vendedores.service';
 import { Vendedores } from 'src/app/common/clases/vendedores';
 import { Router } from '@angular/router';
+import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-vendedores',
@@ -16,16 +18,24 @@ export class VendedoresComponent implements OnInit {
   
 
   constructor(private vendedoresService: VendedoresService,
-              private router : Router) {
+    private router : Router,
+    private modalConfirmService: ModalConfirmacionService,
+    private snackBar: MatSnackBar) {
+
     this.cargandoVendedores = true;
     this.insertarVendedor = false;
+
   }
 
+
   ngOnInit() {
+
     this.consultarVendedores();
+
   }
 
   consultarVendedores(){
+
     this.vendedoresService.consultarVendedores().subscribe(res => {
       this.vendedores = res;
       console.log(res);
@@ -34,6 +44,7 @@ export class VendedoresComponent implements OnInit {
     () => {
       this.cargandoVendedores = false;
     })
+
   }
 
   verDetalle( vendedor: Vendedores ){
@@ -49,12 +60,29 @@ export class VendedoresComponent implements OnInit {
   }
 
   cambiarEstado(vendedor: Vendedores){
-    this.cargandoVendedores = true;
-    this.vendedoresService.cambiarEstadoVendedor(vendedor).subscribe(res => {
-      console.log("cambiar estado", res);
-      this.consultarVendedores();
-      this.cargandoVendedores = false;
-    })
+
+    this.modalConfirmService.openConfirmDialog('¿Esta seguro que desea Cambiar el estado del vendedor?') 
+      .afterClosed().subscribe(res => {
+
+        if(res){
+
+          this.cargandoVendedores = true;
+          this.vendedoresService.cambiarEstadoVendedor(vendedor).subscribe(res => {
+            console.log("cambiar estado", res);
+            
+
+          },
+          err => console.log(err),
+          () => {
+
+            this.consultarVendedores();
+            this.cargandoVendedores = false;
+            this.snackBar.open('Accion realizada exitosamente', 'Ok');
+
+          })
+        }
+
+      })
 
   }
 
