@@ -8,13 +8,14 @@ import { DetalleComponent } from 'src/app/vendedores/detalle/detalle.component';
 import { InsertarVendedorComponent } from 'src/app/vendedores/insertar-vendedor/insertar-vendedor.component';
 import { ClientesComponent } from 'src/app/clientes/clientes.component';
 import { InsertarClienteComponent } from 'src/app/clientes/insertar-cliente/insertar-cliente.component';
+import { AuthService } from 'src/app/common/services/auth.service';
 
 const routes: Routes = [
   {path: 'login' , component: LoginComponent},
   {
     path: 'home', 
     component: HomeComponent,
-    
+    canActivate: [AuthService],
     children : [
       {path: 'vendedores', component: VendedoresComponent},
       {path: 'vendedores/detalle', component: DetalleComponent},

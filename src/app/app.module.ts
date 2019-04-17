@@ -12,9 +12,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
-
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+
+import { AuthService } from 'src/app/common/services/auth.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -55,7 +56,9 @@ import { ModalConfirmacionComponent } from 'src/app/common/componentes/modal-con
     MatDialogModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   entryComponents: [
     ModalConfirmacionComponent
   ],
