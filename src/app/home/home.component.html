@@ -1,9 +1,10 @@
-<nav class="navbar navbar-light bg-dark">
-  <a class="navbar-brand" href="#" routerLink="./notificaciones">
-    <img src="../../assets/img/TyT.ico" width="40" height="40" class="d-inline-block align-top" alt="">
-    <span style="color: white;">Grupo TyT</span>
-  </a>
-  <ul class="nav justify-content-end">
+<div>
+  <nav class="navbar navbar-light bg-dark">
+    <a class="navbar-brand" href="#" routerLink="./notificaciones">
+      <img src="../../assets/img/TyT.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+      <span style="color: white;">Grupo TyT</span>
+    </a>
+    <ul class="nav">
       <li class="nav-item">
         <a class="nav-link" href="#" routerLink="./vendedores">Vendedores</a>
       </li>
@@ -19,10 +20,29 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Contabilidad</a>
       </li>
-      
-    </ul>
-</nav>
+      <li class="nav-item dropdown ">
+        <div *ngIf="cargandoAdmin">
+          <div class="spinner-border text-light" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
 
-<div>
-  <router-outlet></router-outlet>
+        <div *ngIf="!cargandoAdmin">
+          <a class="navbar-text dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <img src="{{admin.imgPerfil.url}}" alt="" width="30" height="30">
+          </a>
+          <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesi&oacute;n</a>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </nav>
+
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 </div>

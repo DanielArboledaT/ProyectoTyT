@@ -1,3 +1,4 @@
+import { ImgPerfil } from 'src/app/common/clases/img-perfil';
 export class Administrador{
 
     idAdministrador: number;
@@ -15,5 +16,6 @@ export class Administrador{
     estado: string;
     email: string;
     password: string;
+    imgPerfil: ImgPerfil;
 
 }

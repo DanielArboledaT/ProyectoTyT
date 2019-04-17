@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    localStorage.removeItem('token');
     if(localStorage.getItem('token') !== null){
       this.authService.setToken(localStorage.getItem('token'));
       this.route.navigate(['home/notificaciones']);
@@ -42,13 +41,13 @@ export class LoginComponent implements OnInit {
       this.authService.setToken(res.dataAdmin.accessToken);
       localStorage.setItem('token', res.dataAdmin.accessToken);
       this.authService.setToken(localStorage.getItem('token'));
-      localStorage.setItem('Admin', res.dataAdmin.administrador);
+      localStorage.setItem('admin', res.dataAdmin.administrador);
       this.route.navigate(['home/notificaciones']);
 
       }, error => {
-          console.error('Error de autenticación!!!!', error.status);
-          alert('Usuario o contraseña incorrectos.');
-          this.cargando = false;
+        console.error('Error de autenticación!!!!', error.status);
+        alert('Usuario o contraseña incorrectos.');
+        this.cargando = false;
       });
     
   }

@@ -17,7 +17,7 @@ export class AdministradorService {
 
   consultarAdministrador(hash: string) : Observable<any>{
 
-    const url = this.ulrVentas + '/administrador/consulta';
+    const url = this.ulrVentas + '/administrador/consulta/' +hash;
     return this.httpClient.get<any>(url);
 
   }
