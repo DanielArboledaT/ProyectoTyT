@@ -4,6 +4,7 @@ import { ClientesService } from 'src/app/common/services/clientes.service';
 import { MatTableDataSource } from '@angular/material';
 import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
 import { MatSnackBar } from '@angular/material';
+import { Cliente } from '../common/clases/clientes';
 
 
 @Component({
@@ -48,6 +49,7 @@ export class ClientesComponent implements OnInit {
   }
 
   consultarClientes(){
+
     this.cargandoClientes = true;
     this.clienteService.consultarCliente().subscribe(res => {
 
@@ -102,7 +104,12 @@ export class ClientesComponent implements OnInit {
 
       });
 
-    
+  }
+
+  clickEditarCliente(cliente: Cliente){
+
+    this.clienteService.setDetalleCliente(cliente);
+    this.route.navigate(['/home/clientes/insertar']);
 
   }
 

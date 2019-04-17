@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material';
 export class InsertarClienteComponent implements OnInit {
 
   nuevoCliente: Cliente;
+  detalleCliente: Cliente;
   guardadoCliente: boolean;
 
   constructor(private clienteService: ClientesService,
@@ -25,6 +26,15 @@ export class InsertarClienteComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.detalleCliente = this.clienteService.getDetalleCliente();
+
+    if(this.detalleCliente === undefined){
+      this.nuevoCliente  = new Cliente();
+    }else{
+      this.nuevoCliente = this.detalleCliente;
+    }
+
   }
 
   guardarCliente(){
@@ -34,22 +44,41 @@ export class InsertarClienteComponent implements OnInit {
 
         if(res){
           this.guardadoCliente = true;
-          this.clienteService.guardarNuevoCliente(this.nuevoCliente).subscribe(res => {
+
+          //Es un cliente nuevo
+          if(this.detalleCliente === undefined){
+            this.clienteService.guardarNuevoCliente(this.nuevoCliente).subscribe(res => {
       
-            console.log(res);
-      
-          },
-          err => console.log(err),
-          () => {
-            this.guardadoCliente = false;
-            this.snackBar.open('Cliente guardado exitosamente', 'Ok');
-          })
+              console.log(res);
+        
+            },
+            err => console.log(err),
+            () => {
+              this.guardadoCliente = false;
+              this.snackBar.open('Cliente agregado exitosamente', 'Ok');
+            });
+
+          }else{
+
+            this.clienteService.actualizarCliente(this.nuevoCliente).subscribe(res => {
+
+              console.log(res)
+
+            },
+            err => console.log(err),
+            () => {
+              this.guardadoCliente = false;
+              this.snackBar.open('Cliente actualizado exitosamente', 'Ok');
+            });
+
+          }
+          
         }
 
       });
 
-    
-
   }
+
+
 
 }

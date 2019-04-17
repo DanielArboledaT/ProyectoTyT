@@ -2,8 +2,8 @@
   <div class="card-header">
     Listado de clientes
     <div class="float-right">
-      <button type="button" class="btn btn-primary" (click)="clickInsertarCliente()">
-        Agregar nuevo cliente
+      <button type="button" class="btn btn-outline-primary" (click)="clickInsertarCliente()">
+        <i class="fa fa-plus" aria-hidden="true"></i> Crear cliente
       </button>
     </div>
   </div>
@@ -50,7 +50,7 @@
               <th mat-header-cell *matHeaderCellDef> Nombre negocio </th>
               <td mat-cell *matCellDef="let element"> {{element.nombreNegocio}} </td>
             </ng-container>
-            <ng-container matColumnDef="direccion">
+            <ng-container matColumnDef="direccion" >
               <th mat-header-cell *matHeaderCellDef> Dirección </th>
               <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
             </ng-container>
@@ -76,12 +76,12 @@
             </ng-container>
 
             <ng-container matColumnDef="Acciones">
-              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let element">
                 <div *ngIf="!cargandoCambiarEstado && element.estado === 'A'" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                   <div class="btn-group mr-2" role="group" aria-label="First group">
                     <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top"
-                      title="Editar cliente">
+                      title="Editar cliente" (click)="clickEditarCliente(element)">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </button>
                     <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top"
