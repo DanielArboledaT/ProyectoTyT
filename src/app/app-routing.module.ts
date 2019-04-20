@@ -9,6 +9,8 @@ import { InsertarVendedorComponent } from 'src/app/vendedores/insertar-vendedor/
 import { ClientesComponent } from 'src/app/clientes/clientes.component';
 import { InsertarClienteComponent } from 'src/app/clientes/insertar-cliente/insertar-cliente.component';
 import { AdministradoresComponent } from 'src/app/administradores/administradores.component';
+import { DetalleAdministradorComponent } from 'src/app/administradores/detalle-administrador/detalle-administrador.component';
+
 import { AuthService } from 'src/app/common/services/auth.service';
 
 const routes: Routes = [
@@ -25,6 +27,7 @@ const routes: Routes = [
       {path: 'clientes', component: ClientesComponent},
       {path: 'clientes/insertar', component: InsertarClienteComponent},
       {path: 'administradores', component: AdministradoresComponent},
+      {path: 'administrador/detalle/:hash', component: DetalleAdministradorComponent}
     ]
 
   },

@@ -6,7 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip'
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { InsertarClienteComponent } from './clientes/insertar-cliente/insertar-cliente.component';
 import { ModalConfirmacionComponent } from 'src/app/common/componentes/modal-confirmacion/modal-confirmacion.component';
 import { AdministradoresComponent } from './administradores/administradores.component';
+import { DetalleAdministradorComponent } from './administradores/detalle-administrador/detalle-administrador.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { AdministradoresComponent } from './administradores/administradores.comp
     ClientesComponent,
     InsertarClienteComponent,
     ModalConfirmacionComponent,
-    AdministradoresComponent
+    AdministradoresComponent,
+    DetalleAdministradorComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { AdministradoresComponent } from './administradores/administradores.comp
     AngularFireStorageModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatExpansionModule
   ],
   providers: [
     AuthService

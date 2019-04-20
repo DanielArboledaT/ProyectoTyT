@@ -64,12 +64,6 @@ export class ClientesComponent implements OnInit {
 
   }
 
-  getTotalCost() {
-
-    return this.listaClientes.map(v => v.valor).reduce( (acc, valor) => acc + parseInt(valor), 0);
-
-  }
-
   clickInsertarCliente(){
 
     this.route.navigate(['/home/clientes/insertar'])

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     
-    this.adminService.consultarAdministrador(localStorage.getItem('admin'))
+    this.adminService.consultarAdministradorByHash(localStorage.getItem('admin'))
       .subscribe(res => {
 
         this.admin = res[0];

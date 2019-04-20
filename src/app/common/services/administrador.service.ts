@@ -16,10 +16,23 @@ export class AdministradorService {
     this.ulrVentas = environment.URL_VENTAS;
   }
 
+  consultarAdministradores(): Observable<any>{
 
-  consultarAdministrador(hash: string) : Observable<any>{
+    const url = this.ulrVentas + '/administrador/consulta';
+    return this.httpClient.get<any>(url);
 
-    const url = this.ulrVentas + '/administrador/consulta/' +hash;
+  }
+
+  consultarAdministradorByHash(hash: string) : Observable<any>{
+
+    const url = this.ulrVentas + '/administrador/consultaporhash/' +hash;
+    return this.httpClient.get<any>(url);
+
+  }
+
+  consularHistoricoAdminVendedor(id): Observable<any>{
+
+    const url = this.ulrVentas + '/historicoAdmin/consulta/' + id;
     return this.httpClient.get<any>(url);
 
   }

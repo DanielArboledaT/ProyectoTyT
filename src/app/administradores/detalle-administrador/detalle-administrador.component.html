@@ -1,0 +1,82 @@
+<div *ngIf="cargandoAdmin" class="spinner">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="!cargandoAdmin" class="en-detalle">
+  <div style="padding: 20px;">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true" mat-raised-button matTooltip="Regresar" routerLink="/home/administradores">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true"><i class="fa fa-handshake-o" aria-hidden="true"></i> Histórico vendedor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+          aria-selected="false"><i class="fa fa-user" aria-hidden="true"></i> Histórico cliente</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+          aria-selected="false"><i class="fa fa-archive" aria-hidden="true"></i> Histórico producto</a>
+      </li>
+    </ul>
+    <div class="card">
+      <div class="card-body">
+        <h3>Histórico de vendedor</h3>
+        <span style="color: grey">
+          Son todas las modificaciones a datos sobre vendedores que ha hecho {{admin.primerNombre}}
+          {{admin.primerApellido}} como admistrador.
+        </span>
+
+        <div style="margin-top: 20px;">
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let historico of historicoAdminVendedores">
+              <mat-expansion-panel-header>
+                <mat-panel-title style="width: 200px;">
+                  {{historico.movimiento}}
+                </mat-panel-title>
+                <mat-panel-description style="text-align: left;">
+                  Vendedor: {{historico.vendedor.primerNombre}} {{historico.vendedor.primerApellido}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="descripcion-cambio">
+                <div class="info">
+                  <h5>Cambio realizado por</h5>
+                  <p>{{admin.primerNombre}} {{admin.primerApellido}}</p>
+                </div>
+
+                <div class="info">
+                  <h5>Cambio realizado al vendedor</h5>
+                  <p>{{historico.vendedor.primerNombre}} {{historico.vendedor.primerApellido}}
+                    <button type="button" class="btn btn-link" mat-raised-button
+                      matTooltip="Ver detalle del vendedor">
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                    </button>
+                  </p>
+                </div>
+
+                <div class="info">
+                  <h5>Tipo de cambio</h5>
+                  <p>{{historico.movimiento}}</p>
+                </div>
+
+                <div class="info">
+                  <h5>Fecha del cambio</h5>
+                  <p>{{historico.fechaMovimiento}}</p>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
