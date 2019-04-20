@@ -22,6 +22,7 @@ export class InsertarVendedorComponent implements OnInit {
   imgPerfilNueva: boolean;
   private urlImg: string;
   cargando: boolean;
+  esEditar: boolean;
 
   constructor(private uploadImgService: UploadImagenService, 
     private vendedoresService: VendedoresService,
@@ -32,12 +33,14 @@ export class InsertarVendedorComponent implements OnInit {
     this.objImagen = new ObjetoImg();
     this.imgPerfilNueva = false;
     this.cargando = false;
+    this.esEditar = false;
 
   }
 
   ngOnInit() {
     this.detalleVendedor = this.vendedoresService.getDetalleVendedor();
-    this.vendedoresService.setDetalleVendedor(new Vendedores());
+    this.esEditar = this.vendedoresService.getEsEditar();
+    this.vendedoresService.setDetalleVendedor(undefined);
 
     if(this.detalleVendedor === undefined){
       this.nuevoVendedor = new Vendedores();
@@ -45,6 +48,7 @@ export class InsertarVendedorComponent implements OnInit {
       this.nuevoVendedor = this.detalleVendedor;
     }
     console.log("Detalle desde insertar", this.detalleVendedor);
+    console.log("Es editar", this.esEditar);
   
 
   }

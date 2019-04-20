@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Administrador } from 'src/app/common/clases/administrador';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class AdministradorService {
 
   ulrVentas: string;
+  adminConectado: Administrador;
   
   constructor(private httpClient: HttpClient) { 
     this.ulrVentas = environment.URL_VENTAS;
@@ -21,5 +23,14 @@ export class AdministradorService {
     return this.httpClient.get<any>(url);
 
   }
+
+  setAdministrador(admin : Administrador){
+    this.adminConectado = admin;
+  }
+
+  getAdministrador():Administrador{
+    return this.adminConectado;
+  }
+
 
 }

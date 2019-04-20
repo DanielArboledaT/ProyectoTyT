@@ -8,6 +8,7 @@ import { DetalleComponent } from 'src/app/vendedores/detalle/detalle.component';
 import { InsertarVendedorComponent } from 'src/app/vendedores/insertar-vendedor/insertar-vendedor.component';
 import { ClientesComponent } from 'src/app/clientes/clientes.component';
 import { InsertarClienteComponent } from 'src/app/clientes/insertar-cliente/insertar-cliente.component';
+import { AdministradoresComponent } from 'src/app/administradores/administradores.component';
 import { AuthService } from 'src/app/common/services/auth.service';
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
       {path: 'notificaciones', component: NotificacionesComponent},
       {path: 'clientes', component: ClientesComponent},
       {path: 'clientes/insertar', component: InsertarClienteComponent},
+      {path: 'administradores', component: AdministradoresComponent},
     ]
 
   },

@@ -10,31 +10,20 @@
           <div class="col-sm-2">
             <h6 style="padding: 10px;">Imagen de perfil</h6>
             <div class="imagen">
-              <div *ngIf="nuevoVendedor.idImgPerfil !== undefined && nuevoVendedor.imgPerfil !== null && !imgPerfilNueva">
-                <img  src="{{nuevoVendedor.imgPerfil.url}}" alt="Imagen perfil" />
+              <div
+                *ngIf="nuevoVendedor.idImgPerfil !== undefined && nuevoVendedor.imgPerfil !== null && !imgPerfilNueva">
+                <img src="{{nuevoVendedor.imgPerfil.url}}" alt="Imagen perfil" />
               </div>
-              <div *ngIf="(nuevoVendedor.idImgPerfil === undefined || nuevoVendedor.imgPerfil === null) && !imgPerfilNueva">
-                <img  src="../../assets/img/user.png" alt="Imagen perfil" />
+              <div
+                *ngIf="(nuevoVendedor.idImgPerfil === undefined || nuevoVendedor.imgPerfil === null) && !imgPerfilNueva">
+                <img src="../../assets/img/user.png" alt="Imagen perfil" />
               </div>
               <div *ngIf="imgPerfilNueva">
-                <img  [src]="imagenPerfil" alt="Imagen perfil" />
+                <img [src]="imagenPerfil" alt="Imagen perfil" />
               </div>
-              <input
-                type="file"
-                style="display: none;"
-                #imageUpload
-                accept="image/"
-                (change)="fileChange($event)"
-              />
-              <button
-                *ngIf="!imagenAgregada; else botonGuardar"
-                type="button"
-                class="btn btn-primary miboton"
-                (click)="imageUpload.click()"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Subir imagen"
-              >
+              <input type="file" style="display: none;" #imageUpload accept="image/" (change)="fileChange($event)" />
+              <button *ngIf="!imagenAgregada; else botonGuardar" type="button" class="btn btn-primary miboton"
+                (click)="imageUpload.click()" data-toggle="tooltip" data-placement="top" title="Subir imagen">
                 <i class="fa fa-camera" aria-hidden="true"></i>
               </button>
             </div>
@@ -42,50 +31,61 @@
 
           <div class="col-sm-5">
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Primer nombre" name="primerNombre"
-                    id="primerNombre" [(ngModel)]="nuevoVendedor.primerNombre"/>
+              <input matInput placeholder="Primer nombre" name="primerNombre" id="primerNombre"
+                [(ngModel)]="nuevoVendedor.primerNombre" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Primer apellido" name="primerApellido"
-                    id="primerApellido" [(ngModel)]="nuevoVendedor.primerApellido"/>
+              <input matInput placeholder="Primer apellido" name="primerApellido" id="primerApellido"
+                [(ngModel)]="nuevoVendedor.primerApellido" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Identificación" name="identificacion"
-                    id="identificacion" [(ngModel)]="nuevoVendedor.identificacion"/>
+              <input matInput placeholder="Identificación" name="identificacion" id="identificacion"
+                [(ngModel)]="nuevoVendedor.identificacion" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Dirección" name="direccion"
-                    id="direccion" [(ngModel)]="nuevoVendedor.direccion"/>
+              <input matInput placeholder="Dirección" name="direccion" id="direccion"
+                [(ngModel)]="nuevoVendedor.direccion" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Ciudad" name="ciudad"
-                    id="ciudad" [(ngModel)]="nuevoVendedor.ciudad"/>
+              <input matInput placeholder="Ciudad" name="ciudad" id="ciudad" [(ngModel)]="nuevoVendedor.ciudad" />
             </mat-form-field>
           </div>
 
           <div class="col-sm-5">
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Segundo nombre" name="segundoNombre"
-                    id="segundoNombre" [(ngModel)]="nuevoVendedor.segundoNombre"/>
+              <input matInput placeholder="Segundo nombre" name="segundoNombre" id="segundoNombre"
+                [(ngModel)]="nuevoVendedor.segundoNombre" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Segundo apellido" name="segundoNombre"
-                      id="segundoApellido" [(ngModel)]="nuevoVendedor.segundoApellido"/>
+              <input matInput placeholder="Segundo apellido" name="segundoNombre" id="segundoApellido"
+                [(ngModel)]="nuevoVendedor.segundoApellido" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Email" name="email"
-                   id="email" [(ngModel)]="nuevoVendedor.email"/>
+              <input matInput placeholder="Email" name="email" id="email" [(ngModel)]="nuevoVendedor.email" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Teléfono" name="telefono"
-                    id="telefono" [(ngModel)]="nuevoVendedor.telefono"/>
+              <input matInput placeholder="Teléfono" name="telefono" id="telefono"
+                [(ngModel)]="nuevoVendedor.telefono" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Departamento" name="departamento"
-                    id="departamento" [(ngModel)]="nuevoVendedor.departamento"/>
+              <input matInput placeholder="Departamento" name="departamento" id="departamento"
+                [(ngModel)]="nuevoVendedor.departamento" />
             </mat-form-field>
           </div>
         </div>
+
+        <div *ngIf="esEditar" class="row">
+          <div class="col-sm-12">
+            <h4>Comentario</h4>
+            <span style="font-size: .8rem; color: grey">Debido a que es una actualización de vendedor debes dejar un
+              comentario de qué y porque la estás haciendo. Recuerda que este comentario queda registrado así que debes
+              ser lo más preciso que te sea posible</span>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <textarea matInput placeholder="Deja tu comentario"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
       </div>
 
       <div class="card-footer">
@@ -97,12 +97,7 @@
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           Cargando...
         </button>
-        <button
-          type="button"
-          class="btn btn-outline-danger"
-          style="margin-right: 10px;"
-          routerLink="/home/vendedores"
-        >
+        <button type="button" class="btn btn-outline-danger" style="margin-right: 10px;" routerLink="/home/vendedores">
           <i class="fa fa-times" aria-hidden="true"></i>
           Cancelar
         </button>

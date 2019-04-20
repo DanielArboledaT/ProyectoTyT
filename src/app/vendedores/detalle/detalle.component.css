@@ -1,10 +1,11 @@
 .detalleVendedor{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+    position: relative;
 }
 
 .info-container{
-    width: 25%;
+    width: 25vw;
     height: 100%;
     margin: 20px;
 }
@@ -95,3 +96,56 @@
     background: #929293;
     color: white;
 }
+
+.en-detalle{
+    margin: 20px 20px 20px 0;
+    height: 100%;
+    width: calc(75vw - 60px);
+    margin-left: calc(25vw + 40px);
+    position: absolute;
+    top: 62px;
+}
+
+.en-detalle li{
+    border-bottom: none;
+    border-radius: 0;
+    background: #343a40;
+
+}
+
+.en-detalle li a{
+    color: white;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    background: #96006e;
+    border-radius: 0;
+}
+.en-detalle .card{
+    border-radius: 0;
+    border-color: transparent;
+}
+
+.cifras-objetivo{
+    color: grey;
+    font-size: 0.8em;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+.table-container {
+    height: 400px;
+    overflow: auto;
+}
+
+tr.mat-footer-row {
+    font-weight: bold;
+}
+
+.mat-table-sticky {
+    border-top: 1px solid #e0e0e0;
+}
+

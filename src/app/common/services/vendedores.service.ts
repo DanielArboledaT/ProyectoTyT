@@ -12,8 +12,12 @@ export class VendedoresService {
   ulrVentas: string;
   detalleVendedor: Vendedores;
 
+  //Esta variable me dice si esta editando un vendedor existente para obligar que deje un comentario de su edición
+  esEditar: boolean;
+
   constructor( private httpClient: HttpClient) {
     this.ulrVentas = environment.URL_VENTAS;
+    this.esEditar = false;
   }
 
   consultarVendedores() : Observable<any>{
@@ -49,6 +53,14 @@ export class VendedoresService {
 
   getDetalleVendedor(): Vendedores{
     return this.detalleVendedor;
+  }
+
+  setEsEditar( edicion: boolean ){
+    this.esEditar = edicion;
+  }
+
+  getEsEditar(): boolean{
+    return this.esEditar;
   }
 
 }

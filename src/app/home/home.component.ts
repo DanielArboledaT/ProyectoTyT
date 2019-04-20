@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
       .subscribe(res => {
 
         this.admin = res[0];
-        console.log(res);
+        this.adminService.setAdministrador(this.admin);
 
       },
       err => console.log(err),

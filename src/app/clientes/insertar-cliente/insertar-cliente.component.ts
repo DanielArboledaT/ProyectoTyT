@@ -3,6 +3,7 @@ import { Cliente } from 'src/app/common/clases/clientes';
 import { ClientesService } from 'src/app/common/services/clientes.service';
 import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
 import { MatSnackBar } from '@angular/material';
+import { AdministradorService } from 'src/app/common/services/administrador.service';
 
 @Component({
   selector: 'app-insertar-cliente',
@@ -17,7 +18,8 @@ export class InsertarClienteComponent implements OnInit {
 
   constructor(private clienteService: ClientesService,
     private modalConfirmService: ModalConfirmacionService,
-    private snackBar: MatSnackBar) { 
+    private snackBar: MatSnackBar,
+    private adminService: AdministradorService) { 
 
     this.nuevoCliente  = new Cliente();
     this.guardadoCliente = false;
@@ -44,9 +46,12 @@ export class InsertarClienteComponent implements OnInit {
 
         if(res){
           this.guardadoCliente = true;
+          let admin = this.adminService.getAdministrador();
 
           //Es un cliente nuevo
           if(this.detalleCliente === undefined){
+            this.nuevoCliente.idAdministrador = admin.idAdministrador;
+            console.log("Nuevo cliente", this.nuevoCliente);
             this.clienteService.guardarNuevoCliente(this.nuevoCliente).subscribe(res => {
       
               console.log(res);

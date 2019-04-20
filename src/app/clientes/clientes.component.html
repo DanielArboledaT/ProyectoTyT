@@ -50,7 +50,7 @@
               <th mat-header-cell *matHeaderCellDef> Nombre negocio </th>
               <td mat-cell *matCellDef="let element"> {{element.nombreNegocio}} </td>
             </ng-container>
-            <ng-container matColumnDef="direccion" >
+            <ng-container matColumnDef="direccion">
               <th mat-header-cell *matHeaderCellDef> Dirección </th>
               <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
             </ng-container>
@@ -78,23 +78,23 @@
             <ng-container matColumnDef="Acciones">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let element">
-                <div *ngIf="!cargandoCambiarEstado && element.estado === 'A'" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div *ngIf="!cargandoCambiarEstado && element.estado === 'A'" class="btn-toolbar" role="toolbar"
+                  aria-label="Toolbar with button groups">
                   <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top"
-                      title="Editar cliente" (click)="clickEditarCliente(element)">
+                    <button type="button" class="btn btn-outline-primary" mat-raised-button matTooltip="Editar cliente"
+                      (click)="clickEditarCliente(element)">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top"
-                      title="Ver en detalle">
+                    <button type="button" class="btn btn-outline-primary" mat-raised-button matTooltip="Ver en detalle">
                       <i class="fa fa-eye" aria-hidden="true"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top"
-                      title="Inactivar cliente" (click)="cambiarEstadoCliente(element)">
+                    <button type="button" class="btn btn-outline-primary" mat-raised-button
+                      matTooltip="Inactivar cliente" (click)="cambiarEstadoCliente(element)">
                       <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
 
                   </div>
-                </div>  
+                </div>
 
                 <div *ngIf="cargandoCambiarEstado">
                   <button class="btn btn-primary" type="button" disabled>
@@ -104,12 +104,12 @@
                 </div>
 
                 <div *ngIf="!cargandoCambiarEstado && element.estado === 'I'">
-                  <button type="button" class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top"
-                    title="Activar cliente" (click)="cambiarEstadoCliente(element)">
+                  <button type="button" class="btn btn-outline-warning" mat-raised-button matTooltip="Activar cliente"
+                    (click)="cambiarEstadoCliente(element)">
                     <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                   </button>
                 </div>
-                
+
               </td>
             </ng-container>
 

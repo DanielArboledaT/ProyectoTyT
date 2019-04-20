@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip'
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +28,7 @@ import { InsertarVendedorComponent } from './vendedores/insertar-vendedor/insert
 import { ClientesComponent } from './clientes/clientes.component';
 import { InsertarClienteComponent } from './clientes/insertar-cliente/insertar-cliente.component';
 import { ModalConfirmacionComponent } from 'src/app/common/componentes/modal-confirmacion/modal-confirmacion.component';
+import { AdministradoresComponent } from './administradores/administradores.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { ModalConfirmacionComponent } from 'src/app/common/componentes/modal-con
     InsertarVendedorComponent,
     ClientesComponent,
     InsertarClienteComponent,
-    ModalConfirmacionComponent
+    ModalConfirmacionComponent,
+    AdministradoresComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { ModalConfirmacionComponent } from 'src/app/common/componentes/modal-con
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [
     AuthService

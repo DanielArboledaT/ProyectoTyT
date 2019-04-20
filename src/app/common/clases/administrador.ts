@@ -17,5 +17,6 @@ export class Administrador{
     email: string;
     password: string;
     imgPerfil: ImgPerfil;
+    dueño: boolean;
 
 }

@@ -1,7 +1,7 @@
 export class Cliente {
 
     idCliente: number;
-    idVendedor: number;
+    idAdministrador: number;
     primerNombre: string;
     segundoNombre: string;
     primerApellido: string;
