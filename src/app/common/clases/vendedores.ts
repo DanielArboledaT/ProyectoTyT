@@ -1,4 +1,5 @@
 import { ImgPerfil } from 'src/app/common/clases/img-perfil';
+import { HistoricoAdminVendedor } from 'src/app/common/clases/historiciAdminVendedor';
 export class Vendedores{
     
     idVendedor: number;
@@ -17,4 +18,5 @@ export class Vendedores{
     estado: string;
     email: string;
     imgPerfil: ImgPerfil;
+    historicoVendedor: HistoricoAdminVendedor;
 }

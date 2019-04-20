@@ -6,15 +6,24 @@
   </div>
 
   <h3 mat-dialog-title>Confirmación</h3>
+  <div *ngIf="data.esCambiarEstado">
+    <span style="font-size: .8rem; color: grey">Debido a que es un cambio en la información deberá hacer un comentario de
+      porque es el cambio</span>
+    <mat-form-field class="example-full-width" style="width: 100%;">
+      <textarea matInput placeholder="Deja tu comentario" name="comentario" id="comentario"
+        [(ngModel)]="comentario"></textarea>
+    </mat-form-field>
+  </div>
+ 
   <mat-dialog-content class="text-center">
-    <h5>{{date.mensaje}}</h5>
+    <h5>{{data.mensaje}}</h5>
   </mat-dialog-content>
-  <mat-dialog-actions align="end" class="footer">
+  <mat-dialog-actions align="end" class="footer" style="margin-top: 20px;">
     <button mat-flat-button [mat-dialog-close]="false" style="margin-right: 10px;" class="btn btn-outline-primary">
       <i class="fa fa-times" aria-hidden="true"></i>
       NO
     </button>
-    <button mat-flat-button [mat-dialog-close]="true" class="btn btn-outline-warning">
+    <button mat-flat-button (click)="confirmModal()" class="btn btn-outline-warning">
       <i class="fa fa-check" aria-hidden="true"></i>
       SI
     </button>

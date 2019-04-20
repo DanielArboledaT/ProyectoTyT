@@ -59,7 +59,6 @@ export class DetalleComponent implements OnInit {
 
 
   editarVendedor(){
-    this.vendedoresService.setEsEditar(true);
     this.vendedoresService.setDetalleVendedor(this.detalleVendedor);
     this.router.navigate(['home/vendedores/insertar']);
   }

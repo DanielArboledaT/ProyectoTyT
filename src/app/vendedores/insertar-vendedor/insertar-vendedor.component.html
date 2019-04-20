@@ -81,7 +81,8 @@
               comentario de qué y porque la estás haciendo. Recuerda que este comentario queda registrado así que debes
               ser lo más preciso que te sea posible</span>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <textarea matInput placeholder="Deja tu comentario"></textarea>
+              <textarea matInput placeholder="Deja tu comentario" name="comentario" id="comentario"
+                [(ngModel)]="comentario"></textarea>
             </mat-form-field>
           </div>
         </div>

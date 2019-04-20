@@ -4,6 +4,8 @@ import { Vendedores } from 'src/app/common/clases/vendedores';
 import { Router } from '@angular/router';
 import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
 import { MatSnackBar } from '@angular/material';
+import { AdministradorService } from 'src/app/common/services/administrador.service';
+import { HistoricoAdminVendedor } from 'src/app/common/clases/historiciAdminVendedor';
 
 @Component({
   selector: 'app-vendedores',
@@ -20,7 +22,8 @@ export class VendedoresComponent implements OnInit {
   constructor(private vendedoresService: VendedoresService,
     private router : Router,
     private modalConfirmService: ModalConfirmacionService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private adminService: AdministradorService) {
 
     this.cargandoVendedores = true;
     this.insertarVendedor = false;
@@ -60,12 +63,27 @@ export class VendedoresComponent implements OnInit {
   }
 
   cambiarEstado(vendedor: Vendedores){
+    vendedor.historicoVendedor = new HistoricoAdminVendedor();
+    let mensaje;
+    if(vendedor.estado === 'I'){
+      mensaje = '¿Esta seguro que desea activar el estado del vendedor?';
+    }else{
+      mensaje = '¿Esta seguro que desea inactivar el estado del vendedor?';
+    }
 
-    this.modalConfirmService.openConfirmDialog('¿Esta seguro que desea Cambiar el estado del vendedor?') 
+    this.modalConfirmService.openConfirmDialog(mensaje, true) 
       .afterClosed().subscribe(res => {
 
         if(res){
-
+          vendedor.historicoVendedor.cambioRealizado = this.vendedoresService.getComentario();
+          vendedor.historicoVendedor.fechaMovimiento = new Date();
+          vendedor.historicoVendedor.idAdministrador = this.adminService.getAdministrador().idAdministrador;
+          vendedor.historicoVendedor.idVendedor = vendedor.idVendedor;
+          if(vendedor.estado === 'I'){
+            vendedor.historicoVendedor.movimiento = "Activar";
+          }else{
+            vendedor.historicoVendedor.movimiento = "Desactivar";
+          }
           this.cargandoVendedores = true;
           this.vendedoresService.cambiarEstadoVendedor(vendedor).subscribe(res => {
             console.log("cambiar estado", res);

@@ -9,13 +9,14 @@ export class ModalConfirmacionService {
 
   constructor(private dialog: MatDialog) { }
 
-  openConfirmDialog( msg: string ){
+  openConfirmDialog( msg: string, esCambiarEstado?: boolean ){
 
     return this.dialog.open(ModalConfirmacionComponent,{
       width: '390px',
       disableClose: true,
       data: {
-        mensaje: msg
+        mensaje: msg,
+        esCambiarEstado: esCambiarEstado
       }
     });
 

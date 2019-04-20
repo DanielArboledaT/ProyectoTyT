@@ -7,6 +7,8 @@ import { ImgPerfilService } from 'src/app/common/services/img-perfil.service';
 import { ImgPerfil } from 'src/app/common/clases/img-perfil';
 import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
 import { MatSnackBar } from '@angular/material';
+import { AdministradorService } from 'src/app/common/services/administrador.service';
+import { HistoricoAdminVendedor } from 'src/app/common/clases/historiciAdminVendedor';
 
 @Component({
   selector: 'app-insertar-vendedor',
@@ -24,11 +26,15 @@ export class InsertarVendedorComponent implements OnInit {
   cargando: boolean;
   esEditar: boolean;
 
+  //Variable para el comentario que se guardara en el historico
+  comentario: string;
+
   constructor(private uploadImgService: UploadImagenService, 
     private vendedoresService: VendedoresService,
     private imgPerfilService: ImgPerfilService,
     private modalConfirmService: ModalConfirmacionService,
-    private snackBar: MatSnackBar) { 
+    private snackBar: MatSnackBar,
+    private adminService: AdministradorService) { 
 
     this.objImagen = new ObjetoImg();
     this.imgPerfilNueva = false;
@@ -39,13 +45,16 @@ export class InsertarVendedorComponent implements OnInit {
 
   ngOnInit() {
     this.detalleVendedor = this.vendedoresService.getDetalleVendedor();
-    this.esEditar = this.vendedoresService.getEsEditar();
     this.vendedoresService.setDetalleVendedor(undefined);
 
     if(this.detalleVendedor === undefined){
+      this.esEditar = false;
       this.nuevoVendedor = new Vendedores();
+      this.nuevoVendedor.historicoVendedor = new HistoricoAdminVendedor(); 
     }else{
+      this.esEditar = true;
       this.nuevoVendedor = this.detalleVendedor;
+      this.nuevoVendedor.historicoVendedor = new HistoricoAdminVendedor(); 
     }
     console.log("Detalle desde insertar", this.detalleVendedor);
     console.log("Es editar", this.esEditar);
@@ -87,7 +96,7 @@ export class InsertarVendedorComponent implements OnInit {
             
             console.log("entre")
             this.nuevoVendedor.fechaIngreso = new Date();
-            this.nuevoVendedor.idAdministrador = 1;
+            this.nuevoVendedor.idAdministrador = this.adminService.getAdministrador().idAdministrador;
       
             if(this.imgPerfilNueva){
               this.uploadImg(this.nuevoVendedor);
@@ -157,6 +166,7 @@ export class InsertarVendedorComponent implements OnInit {
       () => {
         this.cargando = false;
         this.snackBar.open('Cambios guardados exitosamente', 'Ok');
+        this.esEditar = false;
       })
 
   }
@@ -166,6 +176,12 @@ export class InsertarVendedorComponent implements OnInit {
     if(idImg !== undefined){
       this.nuevoVendedor.idImgPerfil = idImg;
     }
+    this.nuevoVendedor.historicoVendedor.fechaMovimiento = new Date();
+    this.nuevoVendedor.historicoVendedor.movimiento = "Actualizar";
+    this.nuevoVendedor.historicoVendedor.idVendedor = this.detalleVendedor.idVendedor;
+    this.nuevoVendedor.historicoVendedor.idAdministrador = this.adminService.getAdministrador().idAdministrador;
+    this.nuevoVendedor.historicoVendedor.cambioRealizado = this.comentario;
+    console.log("nuevoVendedor",this.nuevoVendedor);
     this.vendedoresService.actualizarVendedor(this.nuevoVendedor).subscribe(res => {
       console.log("actualizado", res);
     },
@@ -173,6 +189,7 @@ export class InsertarVendedorComponent implements OnInit {
     () => {
       this.cargando = false;
       this.snackBar.open('Cambios guardados exitosamente', 'Ok');
+      this.esEditar = false;
     })
 
   }
