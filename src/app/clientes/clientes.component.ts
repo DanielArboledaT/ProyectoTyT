@@ -5,7 +5,8 @@ import { MatTableDataSource } from '@angular/material';
 import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
 import { MatSnackBar } from '@angular/material';
 import { Cliente } from '../common/clases/clientes';
-
+import { HistoricoAdminCliente } from '../common/clases/historicoAdminCliente';
+import { AdministradorService } from 'src/app/common/services/administrador.service';
 
 @Component({
   selector: 'app-clientes',
@@ -36,7 +37,8 @@ export class ClientesComponent implements OnInit {
   constructor(private route: Router, 
     private clienteService: ClientesService,
     private modalConfirmService: ModalConfirmacionService,
-    private snackBar: MatSnackBar) { 
+    private snackBar: MatSnackBar,
+    private adminService: AdministradorService) { 
     
     this.cargandoCambiarEstado = false;
 
@@ -76,12 +78,29 @@ export class ClientesComponent implements OnInit {
 
   }
 
-  cambiarEstadoCliente(cliente){
+  cambiarEstadoCliente(cliente: Cliente){
 
-    this.modalConfirmService.openConfirmDialog('¿Esta seguro que desea cambiar el estado del cliente?') 
+    cliente.historicoCliente = new HistoricoAdminCliente();
+    let mensaje;
+    if(cliente.estado === 'I'){
+      mensaje = '¿Esta seguro que desea activar el estado del vendedor?';
+    }else{
+      mensaje = '¿Esta seguro que desea inactivar el estado del vendedor?';
+    }
+
+    this.modalConfirmService.openConfirmDialog(mensaje,true) 
       .afterClosed().subscribe(res => {
         
         if(res){
+          cliente.historicoCliente.cambioRealizado = this.clienteService.getComentario();
+          cliente.historicoCliente.fechaMovimiento = new Date();
+          cliente.historicoCliente.idAdministrador = this.adminService.getAdministrador().idAdministrador;
+          cliente.historicoCliente.idCliente = cliente.idCliente;
+          if(cliente.estado === 'I'){
+            cliente.historicoCliente.movimiento = "Activar";
+          }else{
+            cliente.historicoCliente.movimiento = "Desactivar";
+          }
           this.cargandoCambiarEstado = true;
           this.clienteService.cambiarEstadoCliente(cliente).subscribe(res => {
       

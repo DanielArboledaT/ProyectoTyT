@@ -1,3 +1,4 @@
+import { HistoricoAdminCliente } from 'src/app/common/clases/historicoAdminCliente';
 export class Cliente {
 
     idCliente: number;
@@ -15,5 +16,7 @@ export class Cliente {
     estado: string;
     email: string;
     nombreNegocio: string;
+    fechaIngreso: Date;
+    historicoCliente: HistoricoAdminCliente;
 
 }

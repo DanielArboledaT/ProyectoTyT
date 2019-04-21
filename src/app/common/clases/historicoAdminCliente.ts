@@ -5,6 +5,6 @@ export class HistoricoAdminCliente {
     idCliente: number;
     movimiento: string;
     cambioRealizado: string;
-    fechaMovimineto: Date;
+    fechaMovimiento: Date;
 
 }

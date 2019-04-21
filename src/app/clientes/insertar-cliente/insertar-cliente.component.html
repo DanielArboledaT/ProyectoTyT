@@ -39,7 +39,7 @@
                 [(ngModel)]="nuevoCliente.segundoNombre" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
-              <input matInput placeholder="Segundo apellido" name="segundoNombre" id="segundoApellido"
+              <input matInput placeholder="Segundo apellido" name="segundoApellido" id="segundoApellido"
                 [(ngModel)]="nuevoCliente.segundoApellido" />
             </mat-form-field>
             <mat-form-field class="example-full-width" style="width: 100%;">
@@ -61,8 +61,22 @@
           </div>
 
         </div>
-
+        <div *ngIf="esEditar" class="row">
+          <div class="col-sm-12">
+            <h4>Comentario</h4>
+            <span style="font-size: .8rem; color: grey">Debido a que es una actualización de vendedor debes dejar un
+              comentario de qué y porque la estás haciendo. Recuerda que este comentario queda registrado así que debes
+              ser lo más preciso que te sea posible</span>
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <textarea matInput placeholder="Deja tu comentario" name="comentario" id="comentario"
+                [(ngModel)]="comentario"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
       </div>
+
+      
+      
       <div class="card-footer">
         <button *ngIf="!guardadoCliente" type="button" class="btn btn-outline-primary" (click)="guardarCliente()">
           <i class="fa fa-check" aria-hidden="true"></i>

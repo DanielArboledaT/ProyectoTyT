@@ -31,6 +31,7 @@ import { InsertarClienteComponent } from './clientes/insertar-cliente/insertar-c
 import { ModalConfirmacionComponent } from 'src/app/common/componentes/modal-confirmacion/modal-confirmacion.component';
 import { AdministradoresComponent } from './administradores/administradores.component';
 import { DetalleAdministradorComponent } from './administradores/detalle-administrador/detalle-administrador.component';
+import { HistoricoAdminClienteComponent } from './administradores/detalle-administrador/historico-admin-cliente/historico-admin-cliente.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DetalleAdministradorComponent } from './administradores/detalle-adminis
     InsertarClienteComponent,
     ModalConfirmacionComponent,
     AdministradoresComponent,
-    DetalleAdministradorComponent
+    DetalleAdministradorComponent,
+    HistoricoAdminClienteComponent
   ],
   imports: [
     BrowserModule,

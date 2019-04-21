@@ -15,11 +15,11 @@
       </li>
       <li class="nav-item">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-          aria-selected="true"><i class="fa fa-handshake-o" aria-hidden="true"></i> Histórico vendedor</a>
+          aria-selected="true" (click)="consultarHistoricoAdminVendedor()"><i class="fa fa-handshake-o" aria-hidden="true"></i> Histórico vendedor</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-          aria-selected="false"><i class="fa fa-user" aria-hidden="true"></i> Histórico cliente</a>
+          aria-selected="false" (click)="consultarHistoricoAdminCliente()"><i class="fa fa-user" aria-hidden="true"></i> Histórico cliente</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
@@ -27,7 +27,7 @@
       </li>
     </ul>
     <div class="card">
-      <div class="card-body">
+      <div *ngIf="verHistoricoVendedor" class="card-body">
         <h3>Histórico de vendedor</h3>
         <span style="color: grey">
           Son todas las modificaciones a datos sobre vendedores que ha hecho {{admin.primerNombre}}
@@ -47,15 +47,15 @@
               </mat-expansion-panel-header>
               <div class="descripcion-cambio">
                 <div class="info">
-                  <h5>Cambio realizado por</h5>
+                  <h5>Cambio realizado por:</h5>
                   <p>{{admin.primerNombre}} {{admin.primerApellido}}</p>
                 </div>
 
                 <div class="info">
-                  <h5>Cambio realizado al vendedor</h5>
+                  <h5>Cambio realizado a:</h5>
                   <p>{{historico.vendedor.primerNombre}} {{historico.vendedor.primerApellido}}
-                    <button type="button" class="btn btn-link" mat-raised-button
-                      matTooltip="Ver detalle del vendedor">
+                    <button type="button" class="btn btn-link" mat-raised-button matTooltip="Ver detalle del vendedor"
+                      (click)="irDetalleVendedor(historico.vendedor.hash)">
                       <i class="fa fa-eye" aria-hidden="true"></i>
                     </button>
                   </p>
@@ -66,15 +66,28 @@
                   <p>{{historico.movimiento}}</p>
                 </div>
 
-                <div class="info">
+                <div class="info" style="border: none;">
                   <h5>Fecha del cambio</h5>
                   <p>{{historico.fechaMovimiento}}</p>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-sm-4 offset-sm-4 text-center mydescripcion">
+                  <h5>Descripción del cambio</h5>
+                  <p style="font-size: 0.9rem;color: grey;">
+                    {{historico.cambioRealizado}}
+                  </p>
                 </div>
               </div>
             </mat-expansion-panel>
           </mat-accordion>
         </div>
       </div>
+
+      <div *ngIf="verHistoricoCliente" class="card-body">
+        <app-historico-admin-cliente [admin]="admin"></app-historico-admin-cliente>
+      </div>
+
     </div>
 
 

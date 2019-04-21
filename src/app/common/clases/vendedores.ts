@@ -17,6 +17,7 @@ export class Vendedores{
     fechaIngreso: Date;
     estado: string;
     email: string;
+    hash: string;
     imgPerfil: ImgPerfil;
     historicoVendedor: HistoricoAdminVendedor;
 }

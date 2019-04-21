@@ -11,7 +11,7 @@ export class ClientesService {
 
   ulrVentas: string;
   detalleCliente: Cliente;
-
+  comentario: string;
   constructor(private httpClient: HttpClient) { 
 
     this.ulrVentas = environment.URL_VENTAS;
@@ -57,6 +57,15 @@ export class ClientesService {
     return this.detalleCliente;
 
   }
+
+  setComentario( coment: string ){
+    this.comentario = coment;
+  }
+
+  getComentario():string{
+    return this.comentario;
+  }
+
 
 
 }

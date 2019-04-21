@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VendedoresService } from 'src/app/common/services/vendedores.service';
 import { Vendedores } from 'src/app/common/clases/vendedores';
 import { Router } from '@angular/router';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalle',
@@ -15,10 +15,12 @@ export class DetalleComponent implements OnInit {
   progressBar: number;
   ultimosPedidos: any[];
   columnsPedidosUegentes: string[] = [ 'Id', 'Nombre','Fecha de entrega', 'Valor', 'Acciones'];
-
+  hash: string;
+  cargandoVendedor: boolean;
 
   constructor(private vendedoresService: VendedoresService,
-    private router : Router) { 
+    private router : Router,
+    private activRoute: ActivatedRoute) { 
 
       this.progressBar = 10;
 
@@ -47,14 +49,28 @@ export class DetalleComponent implements OnInit {
           valor: "3000000",
           fechaEntrega: "31/12/2019"
         }
-      ]
+      ];
 
+    this.cargandoVendedor = true;  
   }
 
   ngOnInit() {
-    this.detalleVendedor = this.vendedoresService.getDetalleVendedor();
+    this.activRoute.paramMap.subscribe(params => {
+      this.hash = params.get('hash');
+      this.consultarVendedor();
+    });
    
-    console.log("detalleVendedor", this.detalleVendedor);
+    
+  }
+
+  consultarVendedor(){
+
+    this.vendedoresService.consultarVendedorByHash(this.hash).subscribe(res => {
+
+      this.detalleVendedor = res[0];
+      this.cargandoVendedor = false;
+    })
+
   }
 
 

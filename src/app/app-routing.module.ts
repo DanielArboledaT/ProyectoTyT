@@ -21,7 +21,7 @@ const routes: Routes = [
     canActivate: [AuthService],
     children : [
       {path: 'vendedores', component: VendedoresComponent},
-      {path: 'vendedores/detalle', component: DetalleComponent},
+      {path: 'vendedores/detalle/:hash', component: DetalleComponent},
       {path: 'vendedores/insertar', component: InsertarVendedorComponent},
       {path: 'notificaciones', component: NotificacionesComponent},
       {path: 'clientes', component: ClientesComponent},

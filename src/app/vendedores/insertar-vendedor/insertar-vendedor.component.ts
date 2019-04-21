@@ -24,6 +24,8 @@ export class InsertarVendedorComponent implements OnInit {
   imgPerfilNueva: boolean;
   private urlImg: string;
   cargando: boolean;
+
+   //Variable que verifica si se necesita campo comentario o no
   esEditar: boolean;
 
   //Variable para el comentario que se guardara en el historico

@@ -27,7 +27,12 @@ export class LoginComponent implements OnInit {
 
     if(localStorage.getItem('token') !== null){
       this.authService.setToken(localStorage.getItem('token'));
-      this.route.navigate(['home/notificaciones']);
+      if(this.authService.getRedirectUrl() === undefined){
+        this.route.navigate(['/home/notificaciones']);
+      }else{
+        this.route.navigate([this.authService.getRedirectUrl()]);
+      }
+      
     }
 
   }

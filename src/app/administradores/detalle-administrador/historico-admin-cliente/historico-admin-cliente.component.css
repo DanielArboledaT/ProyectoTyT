@@ -1,0 +1,22 @@
+.descripcion-cambio{
+    display: flex;
+    justify-content: space-between;
+}
+
+.info{
+    width: 25%;
+    text-align: center;
+    border-right: 1px solid #dee2e6;
+}
+
+.info p{
+    font-size: 0.9rem;
+    color: grey;
+}
+
+
+.mydescripcion{
+    text-align: center;
+    border-top: 1px solid #dee2e6;
+    padding-top: 20px;
+}

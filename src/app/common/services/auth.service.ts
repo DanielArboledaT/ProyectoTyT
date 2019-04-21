@@ -13,6 +13,7 @@ export class AuthService {
   private urlVentas: string;
   private token: string;
   private helper = new JwtHelperService();
+  private redirectUrl;
 
   constructor(private httpClient: HttpClient, private router: Router) { 
 
@@ -46,6 +47,7 @@ export class AuthService {
   } 
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    this.redirectUrl = state.url;
     if (typeof this.token !== 'undefined') {
         // logged in so return true
         return true;
@@ -56,6 +58,10 @@ export class AuthService {
     // not logged in so redirect to login page with the return url
     this.router.navigate(['login']);
     return false;
+  }
+
+  getRedirectUrl(){
+    return this.redirectUrl;
   }
 
 }

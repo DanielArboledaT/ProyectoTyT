@@ -32,7 +32,14 @@ export class AdministradorService {
 
   consularHistoricoAdminVendedor(id): Observable<any>{
 
-    const url = this.ulrVentas + '/historicoAdmin/consulta/' + id;
+    const url = this.ulrVentas + '/historicoAdmin/consultaVendedor/' + id;
+    return this.httpClient.get<any>(url);
+
+  }
+
+  consularHistoricoAdminCliente(id): Observable<any>{
+
+    const url = this.ulrVentas + '/historicoAdmin/consultaCliente/' + id;
     return this.httpClient.get<any>(url);
 
   }

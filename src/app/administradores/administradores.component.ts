@@ -36,8 +36,9 @@ export class AdministradoresComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.esDueno = this.adminService.getAdministrador().dueño;
+    
     this.adminService.consultarAdministradores().subscribe(res => {
+      this.esDueno = this.adminService.getAdministrador().dueño;
       this.listadAdmis = res;
       console.log(this.listadAdmis);
     },

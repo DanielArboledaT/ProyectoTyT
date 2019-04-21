@@ -4,6 +4,7 @@ import { ClientesService } from 'src/app/common/services/clientes.service';
 import { ModalConfirmacionService } from 'src/app/common/services/modal-confirmacion.service';
 import { MatSnackBar } from '@angular/material';
 import { AdministradorService } from 'src/app/common/services/administrador.service';
+import { HistoricoAdminCliente } from 'src/app/common/clases/historicoAdminCliente';
 
 @Component({
   selector: 'app-insertar-cliente',
@@ -16,6 +17,12 @@ export class InsertarClienteComponent implements OnInit {
   detalleCliente: Cliente;
   guardadoCliente: boolean;
 
+  //Variable que verifica si se necesita campo comentario o no
+  esEditar: boolean;
+
+  //Variable para el comentario que se guardara en el historico
+  comentario: string;
+
   constructor(private clienteService: ClientesService,
     private modalConfirmService: ModalConfirmacionService,
     private snackBar: MatSnackBar,
@@ -23,6 +30,7 @@ export class InsertarClienteComponent implements OnInit {
 
     this.nuevoCliente  = new Cliente();
     this.guardadoCliente = false;
+    this.esEditar = false;
     
   }
 
@@ -30,11 +38,16 @@ export class InsertarClienteComponent implements OnInit {
   ngOnInit() {
 
     this.detalleCliente = this.clienteService.getDetalleCliente();
+    this.clienteService.setDetalleCliente(undefined);
 
     if(this.detalleCliente === undefined){
+      this.esEditar = false;
       this.nuevoCliente  = new Cliente();
+      this.nuevoCliente.historicoCliente = new HistoricoAdminCliente();
     }else{
+      this.esEditar = true;
       this.nuevoCliente = this.detalleCliente;
+      this.nuevoCliente.historicoCliente = new HistoricoAdminCliente();
     }
 
   }
@@ -46,11 +59,11 @@ export class InsertarClienteComponent implements OnInit {
 
         if(res){
           this.guardadoCliente = true;
-          let admin = this.adminService.getAdministrador();
 
           //Es un cliente nuevo
           if(this.detalleCliente === undefined){
-            this.nuevoCliente.idAdministrador = admin.idAdministrador;
+            this.nuevoCliente.fechaIngreso = new Date();
+            this.nuevoCliente.idAdministrador = this.adminService.getAdministrador().idAdministrador;
             console.log("Nuevo cliente", this.nuevoCliente);
             this.clienteService.guardarNuevoCliente(this.nuevoCliente).subscribe(res => {
       
@@ -65,6 +78,12 @@ export class InsertarClienteComponent implements OnInit {
 
           }else{
 
+            this.nuevoCliente.historicoCliente.fechaMovimiento = new Date();
+            this.nuevoCliente.historicoCliente.movimiento = "Actualizar";
+            this.nuevoCliente.historicoCliente.idCliente = this.detalleCliente.idCliente;
+            this.nuevoCliente.historicoCliente.idAdministrador = this.adminService.getAdministrador().idAdministrador;
+            this.nuevoCliente.historicoCliente.cambioRealizado = this.comentario;
+            console.log("nuevoVendedor",this.nuevoCliente);
             this.clienteService.actualizarCliente(this.nuevoCliente).subscribe(res => {
 
               console.log(res)

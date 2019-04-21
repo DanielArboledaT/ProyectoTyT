@@ -25,6 +25,13 @@ export class VendedoresService {
     return this.httpClient.get<any>(url);
   }
 
+  consultarVendedorByHash(hash: string): Observable<any>{
+
+    const url = this.ulrVentas + '/vendedor/consultaByHash/' +hash;
+    return this.httpClient.get<any>(url);
+
+  }
+
   guardarNuevoVendedor( vendedor: Vendedores ): Observable<any>{
 
     const url = this.ulrVentas + '/vendedor/guardar';

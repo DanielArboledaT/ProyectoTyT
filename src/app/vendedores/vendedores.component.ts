@@ -53,7 +53,7 @@ export class VendedoresComponent implements OnInit {
   verDetalle( vendedor: Vendedores ){
 
     this.vendedoresService.setDetalleVendedor(vendedor);
-    this.router.navigate(['home/vendedores/detalle']);
+    this.router.navigate(['home/vendedores/detalle/'+vendedor.hash]);
 
   }
 
